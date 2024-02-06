@@ -1,5 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { RouterView } from "vue-router";
+
 </script>
  
 <template>
@@ -15,5 +16,17 @@ import { RouterView } from "vue-router";
 </template>
 
 <style>
+.whole-page{
+  position: absolute;
+  .login-container{
+    width: 50%; 
+    height: 58%; 
+    background-color: #FFE4C4; 
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+  }
+}
 
 </style>
