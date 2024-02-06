@@ -1,7 +1,7 @@
 <script setup>
 import { RouterView } from "vue-router";
 </script>
-
+ 
 <template>
   <div class="whole-page">
     <el-container direction="horizontal" class="login-container">

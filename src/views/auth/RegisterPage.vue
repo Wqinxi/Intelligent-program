@@ -3,5 +3,5 @@
 </script>
 
 <template>
-   <div>注册</div>
+   <div>注册页</div>
 </template>
