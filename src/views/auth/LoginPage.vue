@@ -7,8 +7,8 @@
       <el-header class="login-head">登录</el-header>
       <el-main>
         <div class="button-container">
-          <el-button class="login-button" @click="$router.push('/student')">学生登录</el-button>
-          <el-button class="login-button" @click="$router.push('/teacher')">老师登录</el-button>
+          <el-button @click="$router.push('/student')">学生登录</el-button>
+          <el-button @click="$router.push('/teacher')">老师登录</el-button>
         </div>
       </el-main>
     </el-container>

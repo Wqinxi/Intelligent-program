@@ -7,11 +7,90 @@ const route = useRoute()
 </script>
 
 <template>
-  <div>
-    <RouterView v-slot="{ Component }" >
-      <keep-alive>
-        <component :is="Component"/>
-      </keep-alive>
-    </RouterView>
-  </div>
+<el-container>
+
+  <el-header class="top-bar"></el-header>
+  <el-container class="page-container">
+    <el-aside class="aside">
+      <div class="avatar">
+        <img src="@/assets/img/teacher.jpg">
+      </div>
+      <div class="name">
+          李老师
+        </div>
+      <div class="buttons">
+          <el-button class="button" @click="$router.push('/teacher/student-inform')">学生信息</el-button>
+          <el-button class="button" @click="$router.push('/teacher/statistic-inform')">统计信息</el-button>
+        </div>
+    </el-aside>
+
+    <el-main>
+      <RouterView v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </RouterView>
+    </el-main>
+  </el-container>
+
+</el-container>
 </template>
+
+<style scoped>
+.page-container {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  width: 100%;
+  height: 95%;
+  background-color: #e6e6e6e0;
+}
+.top-bar {
+  background-color: #ffffff;
+  height: 5%;
+}
+.aside{
+  width:20%;
+}
+.avatar {
+  margin-top: 10%;
+  margin-left:30%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.buttons {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  display: inline-block;
+  width: 120px;
+  height: 30px;
+  background-color: rgb(186, 186, 186);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.el-button+.el-button {
+    margin-left: 0px;
+}
+.name {
+  margin-top: 6%;
+  margin-left: 42%;
+  font-size: 15px;
+}
+</style>
