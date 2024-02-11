@@ -19,8 +19,14 @@ const route = useRoute()
           李老师
         </div>
       <div class="buttons">
-          <el-button class="button" @click="$router.push('/teacher/student-inform')">学生信息</el-button>
-          <el-button class="button" @click="$router.push('/teacher/statistic-inform')">统计信息</el-button>
+          <el-button class="button" @click="$router.push('/teacher/student-inform')">
+            <el-icon class="icon" size="1.2rem"><DocumentCopy /></el-icon>
+            学生信息
+          </el-button>
+          <el-button class="button" @click="$router.push('/teacher/statistic-inform')">
+            <el-icon class="icon" size="1.2rem"><DataAnalysis /></el-icon>
+            统计信息
+          </el-button>
         </div>
     </el-aside>
 
@@ -77,13 +83,13 @@ const route = useRoute()
 .button {
   display: inline-block;
   width: 120px;
-  height: 30px;
+  height: 35px;
   background-color: rgb(186, 186, 186);
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 10%;
 }
 .el-button+.el-button {
     margin-left: 0px;
@@ -92,5 +98,9 @@ const route = useRoute()
   margin-top: 6%;
   margin-left: 42%;
   font-size: 15px;
+}
+.icon{
+  margin-right:5%;
+  margin-left:-2%;
 }
 </style>

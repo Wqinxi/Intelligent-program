@@ -8,7 +8,7 @@ const handleRefresh = () => {
 
 <template>
   <div class="white-back">
-    <el-icon class="search">
+    <el-icon class="search" size="1.3rem">
         <Search />
     </el-icon>
     <input type="text" class="search-input" placeholder="请输入学生姓名">
@@ -30,8 +30,8 @@ const handleRefresh = () => {
   background-color: #ffffff;
 }
 .search{
-  margin-left: 2%;
-  margin-top:1%;
+  margin-left: 1.2%;
+  margin-top: 1.2%;
 }
 .refresh{
   position: absolute;
@@ -41,21 +41,22 @@ const handleRefresh = () => {
   font-size: 20px; 
 }
 .search-input {
-    outline: none;
+  outline: none;
   width: 78%;
-  height: 60%;
+  height: 45%;
   padding: 5px;
   border: none;
   border-radius: 5px;
   color:#b7b7b7;
   margin-left: 1%;
+  background-color: #ececec;
 }
 
 .search-button {
   margin-top: 1%;
   margin-left:2%;
   width: 8%;
-  height: 70%;
+  height: 60%;
   background-color: #b7b7b7;
   color: #ffffff;
   border: none;
