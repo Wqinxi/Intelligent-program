@@ -94,6 +94,10 @@ const route = useRoute()
 .el-button+.el-button {
     margin-left: 0px;
 }
+.button-active {
+  background-color: rgb(134, 134, 134);
+}
+
 .name {
   margin-top: 6%;
   margin-left: 42%;
