@@ -37,9 +37,9 @@ let list = withDefaults(defineProps<{ Content?: any }>(), {
 </script>
 
 <style scoped lang="less">
-@bgcolor: #5d5959;
-@color: #ffffff;
-@proGressBarColor: rgba(249, 6, 6, 0.956);
+@bgcolor: #d9d9d9;
+@color: #000000;
+@proGressBarColor: #5d5959;
 @proGressColor: rgb(234, 255, 0);
 
 
