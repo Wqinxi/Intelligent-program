@@ -8,13 +8,13 @@ const router = createRouter({
       path: '/',
       redirect: '/auth/login',
       component: () => import('@/views/auth/Index.vue'),
-      children:[]
+      children: []
     },
     {
       path: '/auth',
       redirect: '/auth/login',
       component: () => import('@/views/auth/Index.vue'),
-      children:[ // 二级路由
+      children: [ // 二级路由
         {
           path: 'login',
           component: () => import('@/views/auth/LoginPage.vue')
@@ -26,10 +26,10 @@ const router = createRouter({
       ]
     },
     {
-      path:'/student',
-      redirect:'/student/home-page',
-      component: () =>import('@/views/student/Index.vue'),
-      children:[
+      path: '/student',
+      redirect: '/student/home-page',
+      component: () => import('@/views/student/Index.vue'),
+      children: [
         {
           path: 'home-page',
           component: () => import('@/views/student/HomePage.vue')
@@ -42,10 +42,10 @@ const router = createRouter({
       ]
     },
     {
-      path:'/teacher',
-      redirect:'/teacher/student-inform',
-      component: () =>import('@/views/teacher/Index.vue'),
-      children:[
+      path: '/teacher',
+      redirect: '/teacher/student-inform',
+      component: () => import('@/views/teacher/Index.vue'),
+      children: [
         {
           path: 'student-inform',
           component: () => import('@/views/teacher/Student-Inform.vue')

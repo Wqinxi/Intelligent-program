@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-const ProgramRouter:RouteRecordRaw = {
+const ProgramRouter: RouteRecordRaw = {
     path: '/program',
     redirect: '/program/task1',
     component: () => import('@/views/student/program/Index.vue'),
