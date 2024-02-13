@@ -70,7 +70,7 @@ function goLogin() {
 
 .header {
     z-index: 999;
-    height: 8.6vh;
+    height: 7%;
     width: 100%;
     background-color: transparent;
     backdrop-filter: blur(20px);
@@ -89,8 +89,9 @@ function goLogin() {
         justify-content: space-between;
 
         .home {
-            height: 100%;
-            width: 150px;
+            margin-top: 1%;
+            height: 90%;
+            width: 130px;
             background-color: #d9d9d9e3;
             display: flex;
             align-items: center;
@@ -104,6 +105,7 @@ function goLogin() {
         }
 
         .change {
+            margin-top: 1%;
             height: 100%;
             width: 56px;
             display: flex;
