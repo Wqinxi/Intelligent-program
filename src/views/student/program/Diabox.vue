@@ -6,6 +6,8 @@ import apiComment from '@/api/request.js';
 import { useMessageStore } from '@/stores/message';
 let messages = useMessageStore().messages
 let { addComment, getComment } = apiComment()
+
+let id = useMessageStore().id//id不知道怎么来
 // 初始化
 // getComment() 应该不用了
 
@@ -19,7 +21,7 @@ function sendMessage() {
 
     console.log(messages)
     // 上传评论
-    // addComment()//暂时没有服务器,没测试
+    // addComment(id)//暂时没有服务器,没测试
 
     message.value = '';
     // 滚动到最新消息
@@ -33,7 +35,7 @@ function sendMessageByEnter() {
     messages.push({ sender: 'me', content: message.value, userName: "我" });
     console.log(messages)
     // 上传评论
-    // addComment()//暂时没有服务器,没测试
+    // addComment(id)//暂时没有服务器,没测试
 
 
     message.value = '';

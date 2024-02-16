@@ -6,7 +6,8 @@ import { useMessageStore } from '@/stores/message'
 import apiComment from '@/api/request.js';
 let { addComment, getComment } = apiComment()
 let messages = useMessageStore().messages
-getComment()
+let id = useMessageStore().id
+getComment(id)
 const showbox = ref(false)
 // const messages = [
 //   { sender: 'me', content: '你好！' },

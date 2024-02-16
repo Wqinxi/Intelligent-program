@@ -5,8 +5,7 @@ let messages = useMessageStore().messages
 
 //上传评论
 export default function () {
-    async function addComment() {
-        let id = 123;
+    async function addComment(id) {
         let config = {
             method: 'post',
             url: 'http://127.0.0.1:4523/m1/4023739-0-default/api/messages/get',
@@ -28,11 +27,12 @@ export default function () {
 
     }
     //初始化
-    async function getComment() {
+    async function getComment(id) {
         let config = {
             method: 'get',
             url: 'http://127.0.0.1:4523/m1/4023739-0-default/api/messages/get/',
             params: {
+                id
             }
         };
         let comments;
