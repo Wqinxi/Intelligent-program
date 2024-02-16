@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue';
 import Blockly from 'blockly';
@@ -42,23 +42,23 @@ const updateCode = () => {
 </script>
 
 <template>
-<div id="blocklyDiv"> 
-	<div>	
-    <div id="blockly-div"></div>
+  <div id="blocklyDiv">
+    <div>
+      <div id="blockly-div"></div>
+    </div>
   </div>
-</div>
 </template>
 
 <style scoped>
-
 div#blocklyDiv {
-	border: 1px solid;
-	height: 290px; width: 800px;
-	float: left;
+  border: 1px solid;
+  height: 290px;
+  width: 800px;
+  float: left;
 }
 
 #blockly-div {
-    width: 100%;
-    height: 288px;
-  }
+  width: 100%;
+  height: 288px;
+}
 </style>
