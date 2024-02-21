@@ -40,48 +40,28 @@
     </div>
 </template>
 <script setup lang="ts">
-import { defineProps, withDefaults } from 'vue';
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useCurrentStackStore } from '@/stores/currentTask'
+import { useToken } from '@/stores/token'
+import API from '@/api/request.js'
+let { GetNowTask } = API();
+let token = useToken().token;
+const CurrentStackStore = useCurrentStackStore()//得到第几个课程
+let task = CurrentStackStore.task
+// 请求所得数据,是第几个课程就请求哪一个
+GetNowTask(token, task)
+let courseList = CurrentStackStore.courseList
 const router = useRouter()
-
-let List = withDefaults(defineProps<{ courseList?: any }>(), {
-    courseList: () => {
-        return {
-            name: '课程A',
-            imgSrc: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',
-            courseDetail: "akjdlgps;fiouhaadfsv2456+2456aefvadfaefghimorsuvhiegrstvijmogsvchijmnsvghijmnpumoujegrvhimouegrvahimouegrsvhiojmusv+2456789adfsv+624589a+56pjhfdsokjfpaiodksjaag",
-            coursePage: [
-                {
-                    name: 'ginouaefrvghinouefqrvginouyertvwghinoruvwyeghinoruvwyeghioruvw',
-                    videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
-                },
-                {
-                    name: 'ginouaefrvghinouefqrvginouyertvwghinoruvwyeghinoruvwyeghioruvw',
-                    videoSrc: 'https://csdssssssdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
-                },
-                {
-                    name: 'ginouaefrvghinouefqrvginouyertvwghinoruvwyeghinoruvwyeghioruvw',
-                    videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
-                },
-                {
-                    name: 'ginouaefrvghinouefqrvginouyertvwghinoruvwyeghinoruvwyeghioruvw',
-                    videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
-                },
-            ]
-        }
-    }
-})
 let currentLesson = ref(1);
-
-
-
-let videoSrc = ref(List.courseList.coursePage[0].videoSrc)
+let videoSrc = ref(courseList.coursePage[0].videoSrc)
 function changeVideo(src: string, idx: number) {
     videoSrc.value = src
     currentLesson.value = idx + 1;
+    console.log(`初${task}个课程`, courseList)
 
 }
+
 // 未定式
 function goCoding() {
     router.push('/student/program/task1')

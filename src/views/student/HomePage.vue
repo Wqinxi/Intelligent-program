@@ -4,101 +4,19 @@ import Logo from '@/views/student/Logo.vue'
 import Class from '@/views/student/Class.vue'
 import { useRouter } from 'vue-router'
 import { useCurrentStackStore } from '@/stores/currentTask'
+import { useContentstore } from "@/stores/homeTask"
+import { useToken } from '@/stores/token'
+import API from '@/api/request.js';
+const { GetHomeTask } = API();
+let token = useToken().token;
 const CurrentStackStore = useCurrentStackStore()
-let Content = [{
-    header: 'ehrtehrt课程A',
-    detail: 'xxxxxxxxxasdffxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '10%',
-    isActive: true,
-    task: 1
-}, {
-    header: '课asd程A',
-    detail: 'xxxxxxxxxfadsfxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: true,
-    task: 2
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '30%',
-    isActive: true,
-    task: 3
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '100%',
-    isActive: true,
-    task: 4
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: true,
-    task: 5
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '50%',
-    isActive: true,
-    task: 6
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: true,
-    task: 7
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: true,
-    task: 8
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: false,
-    task: 9
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: false,
-    task: 10
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: false,
-    task: 11
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: false,
-    task: 11
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: false,
-    task: 11
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: false,
-    task: 11
-}, {
-    header: '课程A',
-    detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    progress: '70%',
-    isActive: false,
-    task: 11
-},]
+let Content = useContentstore().content;
+
+GetHomeTask(token)
+
 const router = useRouter()
-function toTheclass(task: number, isActive: boolean) {
-    if (isActive) {
+function toTheclass(task: number, progress: string) {
+    if (progress != '0%') {
         router.push({
             path: '/student/video',
         })
@@ -120,8 +38,8 @@ function toTheclass(task: number, isActive: boolean) {
             <div class="content">
                 <div class="content-wrap">
                     <ul>
-                        <li v-for="item in  Content " @click="toTheclass(item.task, item.isActive)">
-                            <Class :Content="item" />
+                        <li v-for="(item, idx) in  Content " @click="toTheclass(idx, item.progress)">
+                            <Class :Content="item" :task="idx" />
                         </li>
                     </ul>
                 </div>

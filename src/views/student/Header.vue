@@ -70,7 +70,7 @@ function goLogin() {
 
 .header {
     z-index: 999;
-    height: 7%;
+    height: 7vh;
     width: 100%;
     background-color: transparent;
     backdrop-filter: blur(20px);

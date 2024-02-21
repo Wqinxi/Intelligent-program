@@ -2,63 +2,157 @@
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue';
 import Blockly from 'blockly';
-
+import { javascriptGenerator } from 'blockly/javascript';
 const router = useRouter()
 
-// Blockly 工作区实例
-const workspace = ref(null);
 // 工具箱配置
-const toolbox = {
-  kind: 'flyoutToolbox',
-  contents: [
+let toolbox = {
+  "kind": "categoryToolbox",
+  "contents": [
     {
-      kind: 'block',
-      type: 'controls_if',
+      "kind": "category",
+      "name": "控制",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "controls_if"
+        },
+        {
+          "kind": "block",
+          "type": "controls_whileUntil"
+        },
+        {
+          "kind": "block",
+          "type": "controls_for"
+        }
+      ]
     },
     {
-      kind: 'block',
-      type: 'controls_whileUntil',
-    },
-  ],
-};
-// Blockly 生成的代码
-const code = ref(null);
-
-// 初始化 Blockly
+      "kind": "category",
+      "name": "逻辑",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "logic_compare"
+        },
+        {
+          "kind": "block",
+          "type": "logic_operation"
+        },
+        {
+          "kind": "block",
+          "type": "logic_boolean"
+        }
+      ]
+    }
+  ]
+}
+let codeContent = ref();
 onMounted(() => {
-  // 注入到 blockly-div 中
-  workspace.value = Blockly.inject('blockly-div', {
+  let workspace = Blockly.inject('blocklyDiv', {
     toolbox: toolbox,
+    grid: {
+      spacing: 15,
+      length: 4,
+      colour: '#ccc',
+      snap: true
+    },
   });
-  // 为工作区添加修改事件，触发调用 updateCode 函数
-  workspace.value.addChangeListener(updateCode);
+  function updateCode(event: any) {
+    const code = javascriptGenerator.workspaceToCode(workspace);
+    console.log(code)
+    codeContent.value.innerText = code
+  }
+  workspace.addChangeListener(updateCode);
 });
-
-const updateCode = () => {
-  // 获取当前块对应的 JS 代码
-  code.value = Blockly.JavaScript.workspaceToCode(workspace.value);
-};
+let isActive = ref(false);
+function showCode() {
+  isActive.value = (isActive.value == true ? false : true)
+}
 
 </script>
 
 <template>
-  <div id="blocklyDiv">
-    <div>
-      <div id="blockly-div"></div>
+  <div class="code-wrap">
+    <div class="code-area" id="blocklyDiv"></div>
+    <div class="js-code-wrap">
+      <div :class="isActive ? 'js-code-content active' : 'js-code-content'">
+        <div class="js-code">
+          <p ref="codeContent"></p>
+        </div>
+        <buttom @click="showCode">查看代码</buttom>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-div#blocklyDiv {
-  border: 1px solid;
-  height: 290px;
-  width: 800px;
-  float: left;
-}
-
-#blockly-div {
+<style scoped lang="less">
+.code-wrap {
+  background-color: rgb(0, 255, 255);
+  height: 58vh;
   width: 100%;
-  height: 288px;
+  position: relative;
+  overflow: hidden;
+
+  .code-area {
+    height: 100%;
+    width: 100%;
+    background-color: blueviolet;
+  }
+
+  .js-code-wrap {
+    height: 100%;
+    width: 30%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    .js-code-content {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      right: -100%;
+      transition: all .5s;
+
+      &.active {
+        right: 0%;
+
+        .js-code {
+          display: block;
+        }
+      }
+
+      .js-code {
+        height: 100%;
+        width: 100%;
+        background-color: #8a8888;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        padding: 10px;
+
+        p {
+          color: #fff;
+        }
+      }
+
+      buttom {
+        @width: 80px;
+        @height: 25px;
+        border-radius: 5px;
+        position: absolute;
+        white-space: nowrap;
+        z-index: 10;
+        height: @height;
+        width: @width ;
+        color: #FFF;
+        background-color: rgb(143, 141, 141);
+        top: 0px;
+        left: -@width;
+        text-align: center;
+        line-height: @height;
+      }
+    }
+  }
 }
 </style>

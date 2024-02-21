@@ -3,16 +3,15 @@ import { ref, onBeforeMount } from 'vue';
 import axios from 'axios';
 import DiaboxVue from '@/views/student/program/Diabox.vue'
 import { useMessageStore } from '@/stores/message'
+import { useToken } from '@/stores/token'
 import apiComment from '@/api/request.js';
-let { addComment, getComment } = apiComment()
+let { getComment } = apiComment()
 let messages = useMessageStore().messages
-let id = useMessageStore().id
-getComment(id)
+let token = useToken().token;
+getComment(token)
+
 const showbox = ref(false)
-// const messages = [
-//   { sender: 'me', content: '你好！' },
-//   { sender: 'other', content: '你好啊！' },
-// ];
+
 
 function openbox() {
   showbox.value = true;

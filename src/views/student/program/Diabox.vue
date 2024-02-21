@@ -2,12 +2,13 @@
 import { defineEmits } from 'vue';
 import { ref } from 'vue';
 import { nextTick } from 'vue'
-import apiComment from '@/api/request.js';
+import API from '@/api/request.js';
 import { useMessageStore } from '@/stores/message';
+import { useToken } from '@/stores/token';
 let messages = useMessageStore().messages
-let { addComment, getComment } = apiComment()
+let { addComment } = API()
 
-let id = useMessageStore().id//id不知道怎么来
+let token = useToken().token
 // 初始化
 // getComment() 应该不用了
 
@@ -21,7 +22,7 @@ function sendMessage() {
 
     console.log(messages)
     // 上传评论
-    // addComment(id)//暂时没有服务器,没测试
+    // addComment(token)//
 
     message.value = '';
     // 滚动到最新消息
@@ -35,7 +36,7 @@ function sendMessageByEnter() {
     messages.push({ sender: 'me', content: message.value, userName: "我" });
     console.log(messages)
     // 上传评论
-    // addComment(id)//暂时没有服务器,没测试
+    // addComment(token)//
 
 
     message.value = '';

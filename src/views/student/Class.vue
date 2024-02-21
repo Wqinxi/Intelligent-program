@@ -1,11 +1,11 @@
 <!-- 学生首页的每个课程卡片 -->
 <template>
-    <div :class="[Content.isActive ? 'class' : 'class  active']">
+    <div :class="[Content.progress == '0%' ? 'class  active' : 'class']">
         <div class="top-wrap">
             <div class="top">
                 <div class="header">
                     <p>
-                        {{ Content.header }}
+                        {{ Content.title }}
                     </p>
                 </div>
                 <div class="detail">
@@ -17,23 +17,14 @@
         <div class="progress-wrap">
             <div class="progress" :style="{ width: Content.progress }">
             </div>
-            <p>充能：{{ Content.progress }}</p>
+            <p>进度：{{ Content.progress }}</p>
         </div>
     </div>
 </template> 
 <script lang="ts" setup>
 import { defineProps, withDefaults } from 'vue';
-let list = withDefaults(defineProps<{ Content?: any }>(), {
-    Content: () => {
-        return {
-            header: '课程A',
-            detail: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            progress: '100%',
-            isActive: true,
-            task: 4
-        }
-    }
-})
+defineProps(['task', 'Content']);
+
 </script>
 
 <style scoped lang="less">
