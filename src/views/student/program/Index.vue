@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="body-wrap">
     <div class="head-wrap">
@@ -36,20 +34,27 @@
           </div>
         </div>
         <div class="code">
-          <div class="code-wrap">
-            <div class="code-area" id="blocklyDiv"></div>
-            <div class="js-code-wrap">
-              <div :class="isActive ? 'js-code-content active' : 'js-code-content'">
-                <div class="js-code">
-                  <p ref="codeContent"></p>
-                </div>
-                <button @click="showCode">查看代码</button>
-                <div class="runcode" @click="runCode()">
-                  运行代码
-                </div>
-              </div>
-            </div>
-          </div>
+<!--          把下面那一块换成子组件，然后删掉了下面js的东西  -->
+          <RouterView v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </RouterView>
+<!--          <div class="code-wrap">-->
+<!--            <div class="code-area" id="blocklyDiv"></div>-->
+<!--            <div class="js-code-wrap">-->
+<!--              <div :class="isActive ? 'js-code-content active' : 'js-code-content'">-->
+<!--                <div class="js-code">-->
+<!--                  <p ref="codeContent"></p>-->
+<!--                </div>-->
+<!--                <button @click="showCode">查看代码</button>-->
+<!--                <div class="runcode" @click="runCode()">-->
+<!--                  运行代码-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
         </div>
       </div>
     </div>
@@ -61,41 +66,19 @@ import { RouterView, RouterLink, useRoute } from "vue-router";
 import Dialog from "./Dialog.vue";
 import Blockly from 'blockly';
 import * as hans from 'blockly/msg/zh-hans'
-import { useRouter } from 'vue-router'
-import useBlock from "@/views/student/program/code/block.js"
-import useGame from "@/views/student/program/code/game.js"
-import useLevel from "@/views/student/program/code/level.js"
-import usePlayer from "@/views/student/program/code/player.js"
-import usePlaying from "@/views/student/program/code/playing.js"
+ import { useRouter } from 'vue-router'
+
+
 import { ref, onMounted } from 'vue';
 import { javascriptGenerator } from 'blockly/javascript';
 import "@/views/student/program/code/playing.js"
-let {
-  forward, turn_left, turn_right, runCode, exist_path_ahead, exist_path_right, exist_path_left,
-  maze_map,
-  maze_man,
-  maze_end
-} = usePlaying()
 
-let { levels } = useLevel()
-let { game } = useGame()
-
-let {
-  player_direction_left,
-  player_direction_up,
-  player_direction_right,
-  player_direction_down,
-  player_direction_max,
-  player
-} = usePlayer()
 Blockly.setLocale(hans);
 
 const route = useRoute()
 
 ////////////////////////////////////////// code区
 
-let codeContent = ref();
-let workspace: any
 
 let list = [
   {
@@ -125,15 +108,6 @@ onMounted(() => {
 
 ////
 
-
-
-
-function updateCode(event: any) {
-  const code = javascriptGenerator.workspaceToCode(workspace);
-  console.log(code)
-  codeContent.value.innerText = code
-}
-workspace.addChangeListener(updateCode);
 
 let isActive = ref(false);
 function showCode() {
