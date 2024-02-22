@@ -61,12 +61,12 @@ export default () => {
         current_game.goal = { x: level.game.goal.x, y: level.game.goal.y };
         current_game.path = level.game.path;
         current_game.delay = 0;
-        maze_map.src = level.img
-        maze_man.style.backgroundPosition = 49 * 4 * current_game.init_direction + "px";
-        maze_man.style.left = 10 * current_game.init_position.x + "%";
-        maze_man.style.top = 10 * (10 - current_game.init_position.y) + "%";
-        maze_end.style.left = 10 * current_game.goal.x + "%";
-        maze_end.style.top = 10 * (10 - current_game.goal.y) + "%";
+        maze_map.value.src = level.img
+        maze_man.value.style.backgroundPosition = 49 * 4 * current_game.init_direction + "px";
+        maze_man.value.style.left = 10 * current_game.init_position.x + "%";
+        maze_man.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
+        maze_end.value.style.left = 10 * current_game.goal.x + "%";
+        maze_end.value.style.top = 10 * (10 - current_game.goal.y) + "%";
     }
 
     // // function onchange(event) {
@@ -96,8 +96,8 @@ export default () => {
     function move(x, y) {
         for (var i = 1; i <= 10; i++) {
             setTimeout(function () {
-                maze_man.style.left = toNum(maze_man.style.left) + x + "%";
-                maze_man.style.top = toNum(maze_man.style.top) - y + "%";
+                maze_man.value.style.left = toNum(maze_man.value.style.left) + x + "%";
+                maze_man.value.style.top = toNum(maze_man.value.style.top) - y + "%";
             }, current_game.delay);
             current_game.delay += 100;
         }
@@ -107,7 +107,7 @@ export default () => {
         if (x == 1) {
             for (var i = 1; i <= 4; i++) {
                 setTimeout(function () {
-                    maze_man.style.backgroundPositionX = (toNumPx(maze_man.style.backgroundPositionX) + 49) % 784 + "px";
+                    maze_man.value.style.backgroundPositionX = (toNumPx(maze_man.value.style.backgroundPositionX) + 49) % 784 + "px";
                 }, current_game.delay);
                 current_game.delay += 250;
             }
@@ -115,7 +115,7 @@ export default () => {
         else {
             for (var i = 1; i <= 4; i++) {
                 setTimeout(function () {
-                    maze_man.style.backgroundPositionX = (toNumPx(maze_man.style.backgroundPositionX) - 49 + 784) % 784 + "px";
+                    maze_man.value.style.backgroundPositionX = (toNumPx(maze_man.value.style.backgroundPositionX) - 49 + 784) % 784 + "px";
                 }, current_game.delay);
                 current_game.delay += 250;
             }
@@ -125,9 +125,9 @@ export default () => {
     function reset() {
         current_game.player.position = { x: current_game.init_position.x, y: current_game.init_position.y };
         current_game.player.direction = current_game.init_direction;
-        maze_man.style.backgroundPosition = 49 * 4 * current_game.init_direction + "px";
-        maze_man.style.left = 10 * current_game.init_position.x + "%";
-        maze_man.style.top = 10 * (10 - current_game.init_position.y) + "%";
+        maze_man.value.style.backgroundPosition = 49 * 4 * current_game.init_direction + "px";
+        maze_man.value.style.left = 10 * current_game.init_position.x + "%";
+        maze_man.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
         current_game.delay = 0;
         // console.log(current_game.player.to_string());
     }
@@ -170,9 +170,9 @@ export default () => {
         var new_direction = (current_game.player.direction + 1) % player_direction_max;
 
         // setTimeout(function() {
-        // 	maze_man.style.animation = "turn_left_" + current_game.player.direction + " 1s steps(4) forwards";
+        // 	maze_man.value.style.animation = "turn_left_" + current_game.player.direction + " 1s steps(4) forwards";
         // 	console.log("turn_left_" + current_game.player.direction + " 1s steps(4) forwards");
-        // 	maze_man.style.animation = "";
+        // 	maze_man.value.style.animation = "";
         // }, current_game.delay);
         // current_game.delay += 1000;
 
@@ -187,8 +187,8 @@ export default () => {
         var new_direction = ((current_game.player.direction - 1) % player_direction_max + player_direction_max) % player_direction_max;
 
         // setTimeout(function() {
-        // 	maze_man.style.animation = "turn_right_" + current_game.player.direction + " 1s steps(4) forwards";
-        // 	maze_man.style.animation = "";
+        // 	maze_man.value.style.animation = "turn_right_" + current_game.player.direction + " 1s steps(4) forwards";
+        // 	maze_man.value.style.animation = "";
         // }, current_game.delay);
         // current_game.delay += 1000;
 

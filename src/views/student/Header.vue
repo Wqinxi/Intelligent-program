@@ -59,7 +59,7 @@ function goFowards() {
     window.history.go(1)
 }
 function goHome() {
-    router.push('/')
+    router.push('/student')
 }
 function goLogin() {
     router.push('/auth/login')
