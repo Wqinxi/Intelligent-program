@@ -70,6 +70,8 @@ import usePlaying from "@/views/student/program/code/playing.js"
 import { ref, onMounted } from 'vue';
 import { javascriptGenerator } from 'blockly/javascript';
 import "@/views/student/program/code/playing.js"
+const router = useRouter()
+
 let {
   forward, turn_left, turn_right, runCode, exist_path_ahead, exist_path_right, exist_path_left,
   maze_map,

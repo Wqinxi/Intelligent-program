@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ProgramRouter from "@/router/modules/program"
+
 
 const router = createRouter({
   history: createWebHistory(),
@@ -46,7 +46,10 @@ const router = createRouter({
           path: 'video',
           component: () => import('@/views/student/Video.vue')
         },
-        ProgramRouter
+        {
+          path: 'program',
+          component: () => import('@/views/student/program/Index.vue')
+        }
       ]
     },
     {

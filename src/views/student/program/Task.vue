@@ -64,7 +64,7 @@ function changeVideo(src: string, idx: number) {
 
 // 未定式
 function goCoding() {
-    router.push('/student/program/task1')
+    router.push('/student/program')
 }
 
 
