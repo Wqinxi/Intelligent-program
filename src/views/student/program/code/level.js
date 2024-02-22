@@ -16,7 +16,7 @@ export default () => {
     const levels = [
         {
             id: 1,
-            img: "@/assets/img/maze1-1.png",
+            img: "/src/views/student/program/code/img/maze1-1.png",
             blocks: [
                 'forward',
                 'change_direction',
@@ -42,7 +42,7 @@ export default () => {
         },
         {
             id: 2,
-            img: "@/assets/img/maze1-2.png",
+            img: "/src/views/student/program/code/img/maze1-2.png",
             max_blocks: 10,
             blocks: [
                 'forward',
@@ -71,7 +71,7 @@ export default () => {
         },
         {
             id: 3,
-            img: "@/assets/img/maze1-3.png",
+            img: "/src/views/student/program/code/img/maze1-3.png",
             max_blocks: 10,
             blocks: [
                 'forward',

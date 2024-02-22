@@ -46,7 +46,11 @@ const router = createRouter({
           path: 'video',
           component: () => import('@/views/student/Video.vue')
         },
-        ProgramRouter
+        {
+          path: 'task',
+          component: () => import('@/views/student/program/Index.vue')
+        }
+        // ProgramRouter
       ]
     },
     {

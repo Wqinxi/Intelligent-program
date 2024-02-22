@@ -6,13 +6,13 @@
     <div class="wrap">
       <div class="wrap-left">
         <div class="map-wrap">
-          <img src="https://blockly.games/maze/tiles_pegman.png" alt="" ref="maze_map">
-          <div class="person-wrap" ref="maze_man" id="man">
+          <img src="./code/img/maze1-2.png" alt="" ref="mazemap">
+          <div class="person-wrap" ref="mazeman" id="man">
             <div class="person">
               <img src="@/assets/img/person.png" alt="" ref="personimg">
             </div>
           </div>
-          <div class="marker" ref="maze_end" id="marker">
+          <div class="marker" ref="mazeend" id="marker">
             <img src="https://blockly.games/maze/marker.png" alt="">
           </div>
         </div>
@@ -35,25 +35,20 @@
         </div>
         <div class="code">
           <!--          把下面那一块换成子组件，然后删掉了下面js的东西  -->
-          <RouterView v-slot="{ Component }">
-            <keep-alive>
-              <component :is="Component" />
-            </keep-alive>
-          </RouterView>
-          <!--          <div class="code-wrap">-->
-          <!--            <div class="code-area" id="blocklyDiv"></div>-->
-          <!--            <div class="js-code-wrap">-->
-          <!--              <div :class="isActive ? 'js-code-content active' : 'js-code-content'">-->
-          <!--                <div class="js-code">-->
-          <!--                  <p ref="codeContent"></p>-->
-          <!--                </div>-->
-          <!--                <button @click="showCode">查看代码</button>-->
-          <!--                <div class="runcode" @click="runCode()">-->
-          <!--                  运行代码-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
+          <div class="code-wrap">
+            <div class="code-area" id="blocklyDiv"></div>
+            <div class="js-code-wrap">
+              <div :class="isActive ? 'js-code-content active' : 'js-code-content'">
+                <div class="js-code">
+                  <p ref="codeContent"></p>
+                </div>
+                <button @click="showCode">查看代码</button>
+                <div class="runcode" @click="runCode()">
+                  运行代码
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -67,13 +62,154 @@ import Dialog from "./Dialog.vue";
 import Blockly from 'blockly';
 import * as hans from 'blockly/msg/zh-hans'
 import { useRouter } from 'vue-router'
-import { ref, onMounted } from 'vue';
-import { javascriptGenerator } from 'blockly/javascript';
+import useBlockly from "@/views/student/program/code/block.js"
 import useGame from "@/views/student/program/code/game.js"
 import useLevel from "@/views/student/program/code/level.js"
 import usePlayer from "@/views/student/program/code/player.js"
-let { levels } = useLevel()
+import { ref, onMounted } from 'vue';
+import { javascriptGenerator } from 'blockly/javascript';
+
 Blockly.setLocale(hans);
+
+const route = useRoute()
+////////////////////////////////////////// code区
+let list = [
+  {
+    imgSrc: "adsfadsf",
+    name: "任务一"
+  }, {
+    imgSrc: "adsfadsf",
+    name: "任务二"
+  },
+  {
+    imgSrc: "adsfadsf",
+    name: "任务三"
+  },
+  {
+    imgSrc: "adsfadsf",
+    name: "任务四"
+  },
+  {
+    imgSrc: "adsfadsf",
+    name: "任务五"
+  },
+]
+
+const router = useRouter()
+/////////////////////
+
+// 向前走block定义
+Blockly.Blocks['forward'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("向前走");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(180);
+    this.setTooltip("控制人物在当前方向向前走一格");
+    this.setHelpUrl("");
+  }
+};
+
+// 向前走转换js代码定义
+javascriptGenerator.forBlock['forward'] = function (block) {
+  // TODO: Assemble javascript into code variable.
+  var code = 'forward();\n';
+  return code;
+};
+
+// 转弯block定义
+Blockly.Blocks['change_direction'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("向")
+      .appendField(new Blockly.FieldDropdown([["左", "left"], ["右", "right"]]), "dir")
+      .appendField("转");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(180);
+    this.setTooltip("控制人物改变方向");
+    this.setHelpUrl("");
+  }
+};
+
+// 转弯转换js代码定义
+javascriptGenerator.forBlock['change_direction'] = function (block, generator) {
+  var dropdown_dir = block.getFieldValue('dir');
+  // TODO: Assemble javascript into code variable.
+  if (dropdown_dir == 'left') {
+    var code = 'turn_left();\n';
+  }
+  else {
+    var code = 'turn_right();\n';
+  }
+  return code;
+};
+
+// 循环block定义
+Blockly.Blocks['while_do'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("一直执行直到到达终点");
+    this.appendStatementInput("do")
+      .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(225);
+    this.setTooltip("循环执行语句");
+    this.setHelpUrl("");
+  }
+};
+
+// 循环js代码转换定义
+javascriptGenerator.forBlock['while_do'] = function (block, generator) {
+  var statements_do = generator.statementToCode(block, 'do');
+  // TODO: Assemble javascript into code variable.
+  var code = 'while(not_end()){\n' + statements_do + '}\n';
+  return code;
+};
+
+// 选择block定义
+Blockly.Blocks['if_else'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("如果")
+      .appendField(new Blockly.FieldDropdown([["可以向前走", "ahead"], ["可以向左走", "left"], ["可以向右走", "right"]]), "choice");
+    this.appendStatementInput("true")
+      .setCheck(null)
+      .appendField("则");
+    this.appendStatementInput("false")
+      .setCheck(null)
+      .appendField("否则");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(135);
+    this.setTooltip("判断语句真假执行");
+    this.setHelpUrl("");
+  }
+};
+
+// 选择转换js代码定义
+javascriptGenerator.forBlock['if_else'] = function (block, generator) {
+  var dropdown_choice = block.getFieldValue('choice');
+  var statements_true = generator.statementToCode(block, 'true');
+  var statements_false = generator.statementToCode(block, 'false');
+  // TODO: Assemble javascript into code variable.
+  if (dropdown_choice == 'ahead') {
+    var code = 'if(exist_path_ahead()){\n' + statements_true + '}\nelse{\n' + statements_false + '}\n';
+  }
+  else if (dropdown_choice == 'left') {
+    var code = 'if(exist_path_left()){\n' + statements_true + '}\nelse{\n' + statements_false + '}\n';
+  }
+  else if (dropdown_choice == 'right') {
+    var code = 'if(exist_path_right()){\n' + statements_true + '}\nelse{\n' + statements_false + '}\n';
+  }
+  return code;
+};
+
+
+//////////////////
+let { levels } = useLevel()
 let { game } = useGame()
 
 let {
@@ -85,56 +221,68 @@ let {
   player
 } = usePlayer()
 
-///////////////////////////////////////////////////////////////////////////////////////////////
 
 
 let current_game = new game();
-var maze_map = ref()
-var maze_man = ref();
-var maze_end = ref();
-load_level(levels[1]);
+let mazemap = ref()//地图
+let mazeman = ref();//人的位置
+let mazeend = ref();//终点
+let codeContent = ref();
+let personimg = ref();//人物图像
+onMounted(() => {
+  load_level(levels[1]);
+  function load_level(level: any) {
+    let toolbox: any = {
+      "kind": "flyoutToolbox",
+      "contents": []
+    };
+    for (let i = 0; i < level.blocks.length; i++) {
+      toolbox.contents.push({
+        "kind": "block",
+        "type": level.blocks[i]
+      });
+    }
 
-
-function load_level(level: any) {
-  let toolbox: any = {
-    "kind": "flyoutToolbox",
-    "contents": []
-  };
-  for (let i = 0; i < level.blocks.length; i++) {
-    toolbox.contents.push({
-      "kind": "block",
-      "type": level.blocks[i]
+    current_game.workspace = Blockly.inject('blocklyDiv', {
+      toolbox: toolbox,
+      grid: {
+        spacing: 15,
+        length: 4,
+        colour: '#ccc',
+        snap: true
+      },
+      maxBlocks: 10
     });
+
+
+    Blockly.getMainWorkspace().options.maxBlocks = ('max_blocks' in level) ? (level.max_blocks) : Infinity;
+    console.log(current_game.player.direction)
+    current_game.player.direction = level.game.player.direction;
+    current_game.init_direction = level.game.player.direction;
+    current_game.player.position = { x: level.game.player.x, y: level.game.player.y };
+    current_game.init_position = { x: level.game.player.x, y: level.game.player.y };
+    current_game.goal = { x: level.game.goal.x, y: level.game.goal.y };
+    current_game.path = level.game.path;
+    current_game.delay = 100;
+    mazemap.value.src = level.img
+    personimg.value.style.backgroundPosition = 49 * 4 * current_game.init_direction + "px";
+    mazeman.value.style.left = 10 * current_game.init_position.x + "%";
+    mazeman.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
+    mazeend.value.style.left = 10 * current_game.goal.x + "%";
+    mazeend.value.style.top = 10 * (10 - current_game.goal.y) + "%";
   }
 
-  current_game.workspace = Blockly.inject('blocklyDiv', {
-    toolbox: toolbox,
-    grid: {
-      spacing: 15,
-      length: 4,
-      colour: '#ccc',
-      snap: true
-    },
-    maxBlocks: 10
-  });
 
 
-  Blockly.getMainWorkspace().options.maxBlocks = ('max_blocks' in level) ? (level.max_blocks) : Infinity;
 
-  current_game.player.direction = level.game.player.direction;
-  current_game.init_direction = level.game.player.direction;
-  current_game.player.position = { x: level.game.player.x, y: level.game.player.y };
-  current_game.init_position = { x: level.game.player.x, y: level.game.player.y };
-  current_game.goal = { x: level.game.goal.x, y: level.game.goal.y };
-  current_game.path = level.game.path;
-  current_game.delay = 0;
-  maze_map.value.src = level.img
-  maze_man.value.style.backgroundPosition = 49 * 4 * current_game.init_direction + "px";
-  maze_man.value.style.left = 10 * current_game.init_position.x + "%";
-  maze_man.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
-  maze_end.value.style.left = 10 * current_game.goal.x + "%";
-  maze_end.value.style.top = 10 * (10 - current_game.goal.y) + "%";
-}
+  function updateCode(event: any) {
+    const code = javascriptGenerator.workspaceToCode(current_game.workspace);
+    console.log(code)
+    codeContent.value.innerText = code
+  }
+  current_game.workspace.addChangeListener(updateCode);
+});
+
 
 // // function onchange(event) {
 // //     document.getElementById("blockSum").textContent = current_game.workspace.getAllBlocks(false).length;
@@ -163,28 +311,29 @@ function toNumPx(str: any) {
 function move(x: any, y: any) {
   for (var i = 1; i <= 10; i++) {
     setTimeout(function () {
-      maze_man.value.style.left = toNum(maze_man.value.style.left) + x + "%";
-      maze_man.value.style.top = toNum(maze_man.value.style.top) - y + "%";
+      mazeman.value.style.left = toNum(mazeman.value.style.left) + x + "%";
+      mazeman.value.style.top = toNum(mazeman.value.style.top) - y + "%";
     }, current_game.delay);
-    current_game.delay += 100;
+    // current_game.delay += 100;
   }
+  console.log(mazeman.value.style.left, mazeman.value.style.top)
 }
 
 function change_dir(x: any) {
   if (x == 1) {
     for (var i = 1; i <= 4; i++) {
       setTimeout(function () {
-        maze_man.value.style.backgroundPositionX = (toNumPx(maze_man.value.style.backgroundPositionX) + 49) % 784 + "px";
+        personimg.value.style.translate = -(personimg.value.style.translate - 49 + 784) % 784 + "px";
       }, current_game.delay);
-      current_game.delay += 250;
+      // current_game.delay += 250;
     }
   }
   else {
     for (var i = 1; i <= 4; i++) {
       setTimeout(function () {
-        maze_man.value.style.backgroundPositionX = (toNumPx(maze_man.value.style.backgroundPositionX) - 49 + 784) % 784 + "px";
+        personimg.value.style.translate = -(personimg.value.style.translate + 49) % 784 + "px";
       }, current_game.delay);
-      current_game.delay += 250;
+      // current_game.delay += 250;
     }
   }
 }
@@ -192,10 +341,10 @@ function change_dir(x: any) {
 function reset() {
   current_game.player.position = { x: current_game.init_position.x, y: current_game.init_position.y };
   current_game.player.direction = current_game.init_direction;
-  maze_man.value.style.backgroundPosition = 49 * 4 * current_game.init_direction + "px";
-  maze_man.value.style.left = 10 * current_game.init_position.x + "%";
-  maze_man.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
-  current_game.delay = 0;
+  personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
+  mazeman.value.style.left = 10 * current_game.init_position.x + "%";
+  mazeman.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
+  current_game.delay = 100;
   // console.log(current_game.player.to_string());
 }
 
@@ -205,7 +354,7 @@ function reset() {
 
 //向前走
 function forward() {
-  eval(Blockly.JavaScript.INFINITE_LOOP_TRAP);
+  eval(javascriptGenerator.INFINITE_LOOP_TRAP);
   var new_position = { x: current_game.player.position.x, y: current_game.player.position.y, };
   var xx = 0, yy = 0;
   if (current_game.player.direction == player_direction_left) {
@@ -229,40 +378,40 @@ function forward() {
     current_game.player.position = { x: new_position.x, y: new_position.y, };
     move(xx, yy);
   }
-  console.log(current_game.player.to_string());
+  // console.log(current_game.player.to_string());
 }
 
 function turn_left() {
-  eval(Blockly.JavaScript.INFINITE_LOOP_TRAP);
+  eval(javascriptGenerator.INFINITE_LOOP_TRAP);
   var new_direction = (current_game.player.direction + 1) % player_direction_max;
 
   // setTimeout(function() {
-  // 	maze_man.value.style.animation = "turn_left_" + current_game.player.direction + " 1s steps(4) forwards";
+  // 	mazeman.value.style.animation = "turn_left_" + current_game.player.direction + " 1s steps(4) forwards";
   // 	console.log("turn_left_" + current_game.player.direction + " 1s steps(4) forwards");
-  // 	maze_man.value.style.animation = "";
+  // 	mazeman.value.style.animation = "";
   // }, current_game.delay);
   // current_game.delay += 1000;
 
   change_dir(1);
 
   current_game.player.direction = new_direction;
-  console.log(current_game.player.to_string());
+  // console.log(current_game.player.to_string());
 }
 
 function turn_right() {
-  eval(Blockly.JavaScript.INFINITE_LOOP_TRAP);
+  eval(javascriptGenerator.INFINITE_LOOP_TRAP);
   var new_direction = ((current_game.player.direction - 1) % player_direction_max + player_direction_max) % player_direction_max;
 
   // setTimeout(function() {
-  // 	maze_man.value.style.animation = "turn_right_" + current_game.player.direction + " 1s steps(4) forwards";
-  // 	maze_man.value.style.animation = "";
+  // 	mazeman.value.style.animation = "turn_right_" + current_game.player.direction + " 1s steps(4) forwards";
+  // 	mazeman.value.style.animation = "";
   // }, current_game.delay);
   // current_game.delay += 1000;
 
   change_dir(-1);
 
   current_game.player.direction = new_direction;
-  console.log(current_game.player.to_string());
+  // console.log(current_game.player.to_string());
 }
 
 function not_end() {
@@ -340,8 +489,8 @@ function exist_path_right() {
 
 function runCode() {
   let LoopTrap = 10000;
-  Blockly.JavaScript.INFINITE_LOOP_TRAP =
-    'if (--LoopTrap == 0) throw "出现死循环！";\n';
+  javascriptGenerator.INFINITE_LOOP_TRAP =
+    'if (--window.LoopTrap == 0) throw "出现死循环！";\n';
   var code = javascriptGenerator.workspaceToCode(current_game.workspace);
   console.log(code);
   try {
@@ -358,43 +507,8 @@ function runCode() {
     }
     reset();
   }, current_game.delay);
-  current_game.delay += 1000;
+  // current_game.delay += 1000;
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Blockly.setLocale(hans);
-
-const route = useRoute()
-
-////////////////////////////////////////// code区
-
-
-let list = [
-  {
-    imgSrc: "adsfadsf",
-    name: "任务一"
-  }, {
-    imgSrc: "adsfadsf",
-    name: "任务二"
-  },
-  {
-    imgSrc: "adsfadsf",
-    name: "任务三"
-  },
-  {
-    imgSrc: "adsfadsf",
-    name: "任务四"
-  },
-  {
-    imgSrc: "adsfadsf",
-    name: "任务五"
-  },
-]
-
-onMounted(() => {
-  //////
-});
-
 ////
 
 

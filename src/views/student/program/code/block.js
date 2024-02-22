@@ -16,7 +16,7 @@ export default function () {
     };
 
     // 向前走转换js代码定义
-    javascriptGenerator.forBlock['forward'] = function (block, generator) {
+    javascriptGenerator.forBlock['forward'] = function (block) {
         // TODO: Assemble javascript into code variable.
         var code = 'forward();\n';
         return code;
