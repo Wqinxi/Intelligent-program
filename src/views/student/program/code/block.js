@@ -1,26 +1,28 @@
 import Blockly from 'blockly';
 import { javascriptGenerator } from 'blockly/javascript';
-import { ref } from 'vue'
 export default function () {
 
-    var forwardJson = {
-        "message0": "向前走",
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": 230
-    };
-
+    // 向前走block定义
     Blockly.Blocks['forward'] = {
         init: function () {
-            this.jsonInit(forwardJson);
+            this.appendDummyInput()
+                .appendField("向前走");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(180);
+            this.setTooltip("控制人物在当前方向向前走一格");
+            this.setHelpUrl("");
         }
     };
 
-    javascriptGenerator.forBlock['forward'] = function (block) {
-        //TODO: Assemble javascript into code variable.
-        var code = "moveForward();\n"
+    // 向前走转换js代码定义
+    javascriptGenerator.forBlock['forward'] = function (block, generator) {
+        // TODO: Assemble javascript into code variable.
+        var code = 'forward();\n';
         return code;
     };
+
+    // 转弯block定义
     Blockly.Blocks['change_direction'] = {
         init: function () {
             this.appendDummyInput()
@@ -40,10 +42,10 @@ export default function () {
         var dropdown_dir = block.getFieldValue('dir');
         // TODO: Assemble javascript into code variable.
         if (dropdown_dir == 'left') {
-            var code = 'turnLeft();\n';
+            var code = 'turn_left();\n';
         }
         else {
-            var code = 'turnRight();\n';
+            var code = 'turn_right();\n';
         }
         return code;
     };
@@ -108,33 +110,5 @@ export default function () {
         }
         return code;
     };
-    let toolbox = {
-        "kind": "categoryToolbox",
-        "contents": [
-            {
-                "kind": "category",
-                "name": "移动",
-                "contents": [
-                    {
-                        "kind": "block",
-                        "type": "forward"
-                    }
-                    , {
-                        "kind": "block",
-                        "type": "change_direction"
-                    }
-                    , {
-                        "kind": "block",
-                        "type": "if_else"
-                    }
-                    , {
-                        "kind": "block",
-                        "type": "while_do"
-                    }
-                ]
-            }
-        ]
-    }
-
-    return { toolbox }
+    return {}
 }

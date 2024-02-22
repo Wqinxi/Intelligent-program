@@ -8,13 +8,13 @@
     <div class="wrap">
       <div class="wrap-left">
         <div class="map-wrap">
-          <img src="https://blockly.games/maze/tiles_pegman.png" alt="">
-          <div class="person-wrap" ref="person">
+          <img src="https://blockly.games/maze/tiles_pegman.png" alt="" ref="maze_map">
+          <div class="person-wrap" ref="maze_man" id="man">
             <div class="person">
               <img src="@/assets/img/person.png" alt="" ref="personimg">
             </div>
           </div>
-          <div class="marker" ref="marker">
+          <div class="marker" ref="maze_end" id="marker">
             <img src="https://blockly.games/maze/marker.png" alt="">
           </div>
         </div>
@@ -49,7 +49,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -62,14 +61,32 @@ import Dialog from "./Dialog.vue";
 import Blockly from 'blockly';
 import * as hans from 'blockly/msg/zh-hans'
 import { useRouter } from 'vue-router'
-import useFunction from "@/views/student/program/code/function.js"
 import useBlock from "@/views/student/program/code/block.js"
+import useGame from "@/views/student/program/code/game.js"
+import useLevel from "@/views/student/program/code/level.js"
+import usePlayer from "@/views/student/program/code/player.js"
+import usePlaying from "@/views/student/program/code/playing.js"
 import { ref, onMounted } from 'vue';
 import { javascriptGenerator } from 'blockly/javascript';
-let { toolbox } = useBlock();
-Blockly.setLocale(hans);
+import "@/views/student/program/code/playing.js"
+let {
+  forward, turn_left, turn_right, runCode, exist_path_ahead, exist_path_right, exist_path_left,
+  maze_map,
+  maze_man,
+  maze_end
+} = usePlaying()
+
+
 
 const route = useRoute()
+
+////////////////////////////////////////// code区
+
+// 工具箱配置
+let codeContent = ref();
+let workspace: any
+// 开始结束
+
 let list = [
   {
     imgSrc: "adsfadsf",
@@ -91,134 +108,24 @@ let list = [
     name: "任务五"
   },
 ]
-////////////////////////////////////////// code区
-
-// 工具箱配置
-
-let direction = ref(1);
-let person = ref();
-let personimg = ref();
-let marker = ref();
-let codeContent = ref();
-let workspace: any;
-function change(num: any) {
-  return num * 10 + "%"
-}
-let startnum = [4, 1];
-let endnum = [1, 9];
-let start = startnum.map(change)
-let end = endnum.map(change)
-
 
 onMounted(() => {
   //////
-  personimg.value.style.translate = "0px";
-  [person.value.style.top, person.value.style.left] = start;
-  [marker.value.style.top, marker.value.style.left] = end;
-  let workspace = Blockly.inject('blocklyDiv', {
-    toolbox: toolbox,
-    grid: {
-      spacing: 15,
-      length: 4,
-      colour: '#ccc',
-      snap: true
-    },
-    maxBlocks: 10
-  });
-
-  ////
-
-  function updateCode(event: any) {
-    const code = javascriptGenerator.workspaceToCode(workspace);
-    console.log(code)
-    codeContent.value.innerText = code
-  }
-  workspace.addChangeListener(updateCode);
 });
 
-function runCode() {
-  let LoopTrap = 10000;
-  console.log(start)
-  // Blockly.JavaScript.INFINITE_LOOP_TRAP =
-  //   'if (--window.LoopTrap == 0) throw "出现死循环！";\n';
-  var code = javascriptGenerator.workspaceToCode(workspace);
-  console.log(code);
-  try {
-    eval(code);
-  } catch (e) {
-    alert(e);
-  }
-  //   setTimeout(function () {
-  //     if (!not_end()) {
-  //       alert("你成功了！\n\n使用了" + workspace.getAllBlocks(false).length + "个块\n");
-  //     }
-  //     else {
-  //       alert("你失败了！");
-  //     }
-  //     reset();
-  //   }, current_game.delay);
-  //   current_game.delay += 1000;
+////
+
+
+
+
+function updateCode(event: any) {
+  const code = javascriptGenerator.workspaceToCode(workspace);
+  console.log(code)
+  codeContent.value.innerText = code
 }
-let timegap = [0, -196, -392, -588, -735];
-
-function turnRight() {
-  direction.value++;
-  if (direction.value > 4) {
-    direction.value = 1;
-  }
-  if (direction.value < 1) {
-    direction.value = 4
-  }
-  let delay = 0;
-  let pos = timegap[direction.value - 1];
-  for (let i = 0; i < 4; i++) {
-    setTimeout(() => {
-      pos += 49;
-      personimg.value.style.translate = pos + "px";
-    }, delay)
-    delay += 100;
-  }
-}
-
-function turnLeft() {
-  direction.value--;
-  if (direction.value > 4) {
-    direction.value = 1;
-  }
-  if (direction.value < 1) {
-    direction.value = 4
-  }
-  let delay = 0;
-  let pos = timegap[direction.value + 1];
-  for (let i = 0; i < 4; i++) {
-    setTimeout(() => {
-      pos -= 49;
-      personimg.value.style.translate = pos + "px";
-    }, delay)
-    delay += 100;
-  }
-};
-function reset() {
-
-}
+workspace.addChangeListener(updateCode);
 
 
-function moveForward() {
-  if (direction.value == 1) {
-    startnum[0]--;
-  }
-  else if (direction.value == 2) {
-    startnum[1]++;
-  }
-  else if (direction.value == 3) {
-    startnum[0]++;
-  }
-  else if (direction.value == 4) {
-    startnum[1]--;
-  }
-  person.value.style.left = change(startnum[1])
-  person.value.style.top = change(startnum[0])
-}
 
 let isActive = ref(false);
 function showCode() {

@@ -5,5 +5,8 @@ declare module '*.vue' {
     export default component
 }
 declare module '@/api/request.js'
-declare module "@/views/student/program/code/function.js"
+declare module "@/views/student/program/code/game.js"
 declare module "@/views/student/program/code/block.js"
+declare module "@/views/student/program/code/level.js"
+declare module "@/views/student/program/code/player.js"
+declare module "@/views/student/program/code/playing.js"
