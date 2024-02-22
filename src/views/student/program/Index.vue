@@ -56,6 +56,7 @@
   </div>
 </template>
 <script setup lang="ts">
+
 import { RouterView, RouterLink, useRoute } from "vue-router";
 import Dialog from "./Dialog.vue";
 import Blockly from 'blockly';
@@ -76,16 +77,25 @@ let {
   maze_end
 } = usePlaying()
 
+let { levels } = useLevel()
+let { game } = useGame()
 
+let {
+  player_direction_left,
+  player_direction_up,
+  player_direction_right,
+  player_direction_down,
+  player_direction_max,
+  player
+} = usePlayer()
+Blockly.setLocale(hans);
 
 const route = useRoute()
 
 ////////////////////////////////////////// code区
 
-// 工具箱配置
 let codeContent = ref();
 let workspace: any
-// 开始结束
 
 let list = [
   {
@@ -124,8 +134,6 @@ function updateCode(event: any) {
   codeContent.value.innerText = code
 }
 workspace.addChangeListener(updateCode);
-
-
 
 let isActive = ref(false);
 function showCode() {

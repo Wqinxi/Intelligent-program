@@ -16,7 +16,7 @@ let {
     player_direction_down,
     player_direction_max,
     player
-} = usePlayer
+} = usePlayer()
 
 
 export default () => {
