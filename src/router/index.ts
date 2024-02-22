@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ProgramRouter from "@/router/modules/program"
+
 
 const router = createRouter({
   history: createWebHistory(),
