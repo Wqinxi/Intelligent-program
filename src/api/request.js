@@ -69,6 +69,192 @@ export default function () {
             let content = res.data.content;
             console.log("初始化首页视频卡片", content)
             Content.push(...content)
+        }).catch(error => {
+            Content.length = 0;
+            let content = [
+                {
+                    title: "课程A",
+                    detail: "elit sunt sed",
+                    progress: "10%"
+                },
+                {
+                    title: "课程A",
+                    detail: "aliquip in sit nulla",
+                    progress: "60%"
+                },
+                {
+                    title: "课程A",
+                    detail: "ipsum sed aliquip anim cillum",
+                    progress: "60%"
+                },
+                {
+                    title: "课程A",
+                    detail: "do deserunt Duis incididunt qui",
+                    progress: "40%"
+                },
+                {
+                    title: "课程A",
+                    detail: "qui cupidatat",
+                    progress: "50%"
+                },
+                {
+                    title: "课程A",
+                    detail: "Excepteur labore sed veniam",
+                    progress: "10%"
+                },
+                {
+                    title: "课程A",
+                    detail: "culpa",
+                    progress: "50%"
+                },
+                {
+                    title: "课程A",
+                    detail: "elit enim",
+                    progress: "0%"
+                },
+                {
+                    title: "课程A",
+                    detail: "in dolor cupidatat eiusmod",
+                    progress: "40%"
+                },
+                {
+                    title: "课程A",
+                    detail: "fugiat id tempor eiusmod",
+                    progress: "0%"
+                },
+                {
+                    title: "课程A",
+                    detail: "id",
+                    progress: "70%"
+                },
+                {
+                    "title": "安出知",
+                    detail: "sunt eu",
+                    progress: "20%"
+                },
+                {
+                    "title": "么工回精律认",
+                    detail: "Excepteur ut adipisicing dolore sint",
+                    progress: "90%"
+                },
+                {
+                    "title": "点地铁家前例",
+                    detail: "exercitation",
+                    progress: "30%"
+                },
+                {
+                    title: "课程A",
+                    detail: "magna adipisicing",
+                    progress: "30%"
+                },
+                {
+                    title: "课程A",
+                    detail: "mollit eu consectetur",
+                    progress: "0%"
+                },
+                {
+                    title: "课程A",
+                    detail: "ut Duis exercitation esse dolore",
+                    progress: "40%"
+                },
+                {
+                    title: "课程A",
+                    detail: "Excepteur",
+                    progress: "70%"
+                },
+                {
+                    title: "课程A",
+                    detail: "labore esse",
+                    progress: "70%"
+                },
+                {
+                    title: "课程A",
+                    detail: "cupidatat sunt veniam culpa eu",
+                    progress: "40%"
+                },
+                {
+                    title: "课程A",
+                    detail: "deserunt",
+                    progress: "70%"
+                },
+                {
+                    title: "课程A",
+                    detail: "dolore ex laborum id sed",
+                    progress: "70%"
+                },
+                {
+                    title: "课程A",
+                    detail: "cupidatat commodo officia dolore ut",
+                    progress: "10%"
+                },
+                {
+                    title: "课程A",
+                    detail: "do minim esse",
+                    progress: "10%"
+                },
+                {
+                    title: "课程A",
+                    detail: "laborum occaecat",
+                    progress: "10%"
+                },
+                {
+                    title: "课程A",
+                    detail: "minim",
+                    progress: "40%"
+                },
+                {
+                    title: "课程A",
+                    detail: "Excepteur minim in",
+                    progress: "50%"
+                },
+                {
+                    title: "课程A",
+                    detail: "labore do officia",
+                    progress: "50%"
+                },
+                {
+                    title: "课程A",
+                    detail: "eu sint dolore veniam occaecat",
+                    progress: "30%"
+                },
+                {
+                    title: "课程A",
+                    detail: "magna ut ea",
+                    progress: "40%"
+                },
+                {
+                    title: "课程A",
+                    detail: "ipsum cupidatat",
+                    progress: "10%"
+                },
+                {
+                    title: "课程A",
+                    detail: "pariatur in",
+                    progress: "80%"
+                },
+                {
+                    title: "课程A",
+                    detail: "nulla commodo",
+                    progress: "30%"
+                },
+                {
+                    title: "课程A",
+                    detail: "dolore et dolor culpa",
+                    progress: "40%"
+                },
+                {
+                    title: "课程A",
+                    detail: "fugiat amet",
+                    progress: "40%"
+                },
+                {
+                    title: "课程A",
+                    detail: "enim",
+                    progress: "90%"
+                }
+            ]
+            console.log("初始化首页视频卡片", content)
+            Content.push(...content)
         })
     }
     // 初始化某个课程
@@ -81,9 +267,35 @@ export default function () {
             }
         }).then(res => {
             courseList.name = res.data.name
-            courseList.imgSrc = res.data
+            courseList.imgSrc = res.data.imgSrc
             courseList.courseDetail = res.data.courseDetail
             courseList.coursePage = res.data.coursePage
+            courseList.console.log(`初始化第${task}个课程`, res.data)
+        }).catch(error => {
+            courseList.name = "课程A"
+            courseList.imgSrc = "https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg"
+            courseList.courseDetail = 'adsfasdfasdfasdfasdf'
+            courseList.coursePage = [
+                {
+                    name: "A",
+                    videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4'
+                },
+                {
+                    name: "B",
+                    videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4'
+                },
+                {
+                    name: "C",
+                    videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4'
+                }
+                , {
+                    name: "D",
+                    videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4'
+                }, {
+                    name: "E",
+                    videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4'
+                }
+            ]
             courseList.console.log(`初始化第${task}个课程`, res.data)
         })
     }
