@@ -43,7 +43,7 @@
                 <div class="js-code">
                   <p ref="codeContent"></p>
                 </div>
-                <buttom @click="showCode">查看代码</buttom>
+                <button @click="showCode">查看代码</button>
                 <div class="runcode" @click="runCode()">
                   运行代码
                 </div>
@@ -426,7 +426,7 @@ function showCode() {
               @width: 80px;
               @height: 25px;
 
-              buttom {
+              button {
                 border-radius: 5px;
                 position: absolute;
                 white-space: nowrap;
