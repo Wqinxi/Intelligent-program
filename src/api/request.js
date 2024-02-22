@@ -3,19 +3,21 @@ import { useMessageStore } from '@/stores/message'
 import { useContentstore } from "@/stores/homeTask"
 import { useCurrentStackStore } from '@/stores/currentTask'
 let courseList = useCurrentStackStore().courseList
+let task = useCurrentStackStore().task
 let Content = useContentstore().content
 let messages = useMessageStore().messages
 // Api文档链接  https://app.apifox.com/link/project/4023739/apis/api-147912465
 
 //上传评论
 export default function () {
-    async function addComment(token, newmessage) {
+    async function addComment(token, task, newmessage) {
         let config = {
             method: 'post',
             url: 'http://127.0.0.1:4523/m1/4023739-0-default/api/messages/get',
             data: {
                 token,
-                newmessages
+                newmessage,
+                task
             },
             headers: {
                 'User-Agent': 'Apifox/1.0.0 (https://apifox.com)'
@@ -33,12 +35,13 @@ export default function () {
 
     }
     //初始化
-    async function getComment(token) {
+    async function getComment(token, task) {
         let config = {
             method: 'get',
             url: 'http://127.0.0.1:4523/m1/4023739-0-default/api/messages/get/',
             params: {
-                token
+                token,
+                task
             }
         };
         let comments;

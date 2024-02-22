@@ -5,12 +5,12 @@ import { nextTick } from 'vue'
 import API from '@/api/request.js';
 import { useMessageStore } from '@/stores/message';
 import { useToken } from '@/stores/token';
+import { useCurrentStackStore } from '@/stores/currentTask'
+let task = useCurrentStackStore().task
 let messages = useMessageStore().messages
 let { addComment } = API()
 
 let token = useToken().token
-// 初始化
-// getComment() 应该不用了
 
 const closebox = defineEmits(['close']);
 
@@ -22,7 +22,7 @@ function sendMessage() {
 
     console.log(messages)
     // 上传评论
-    // addComment(token)//
+    // addComment(token,task,{ sender: 'me', content: message.value, userName: "我" })//
 
     message.value = '';
     // 滚动到最新消息
@@ -36,7 +36,7 @@ function sendMessageByEnter() {
     messages.push({ sender: 'me', content: message.value, userName: "我" });
     console.log(messages)
     // 上传评论
-    // addComment(token)//
+    // addComment(token,task,{ sender: 'me', content: message.value, userName: "我" })//
 
 
     message.value = '';

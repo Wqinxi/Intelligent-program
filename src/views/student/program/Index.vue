@@ -1,13 +1,73 @@
+
+
+<template>
+  <div class="body-wrap">
+    <div class="head-wrap">
+      <div class="head">课程A：任务一</div>
+    </div>
+    <div class="wrap">
+      <div class="wrap-left">
+        <div class="map-wrap">
+          <img src="https://blockly.games/maze/tiles_pegman.png" alt="">
+          <div class="person-wrap" ref="person">
+            <div class="person">
+              <img src="@/assets/img/person.png" alt="" ref="personimg">
+            </div>
+          </div>
+          <div class="marker" ref="marker">
+            <img src="https://blockly.games/maze/marker.png" alt="">
+          </div>
+        </div>
+        <div class="list-wrap">
+          <div class="list">
+            <div class="list-head">任务清单</div>
+            <ul class="list-content">
+              <li v-for="(item, idx) in list">
+                {{ item.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-right">
+        <div class="dialog-wrap">
+          <div class="dialog">
+            <Dialog />
+          </div>
+        </div>
+        <div class="code">
+          <div class="code-wrap">
+            <div class="code-area" id="blocklyDiv"></div>
+            <div class="js-code-wrap">
+              <div :class="isActive ? 'js-code-content active' : 'js-code-content'">
+                <div class="js-code">
+                  <p ref="codeContent"></p>
+                </div>
+                <buttom @click="showCode">查看代码</buttom>
+                <div class="runcode" @click="runCode()">
+                  运行代码
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 <script setup lang="ts">
 import { RouterView, RouterLink, useRoute } from "vue-router";
 import Dialog from "./Dialog.vue";
 import Blockly from 'blockly';
 import * as hans from 'blockly/msg/zh-hans'
 import { useRouter } from 'vue-router'
+import useFunction from "@/views/student/program/code/function.js"
+import useBlock from "@/views/student/program/code/block.js"
 import { ref, onMounted } from 'vue';
 import { javascriptGenerator } from 'blockly/javascript';
+let { toolbox } = useBlock();
 Blockly.setLocale(hans);
-
 
 const route = useRoute()
 let list = [
@@ -34,50 +94,27 @@ let list = [
 ////////////////////////////////////////// code区
 
 // 工具箱配置
-let toolbox = {
-  "kind": "categoryToolbox",
-  "contents": [
-    {
-      "kind": "category",
-      "name": "控制",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "controls_if"
-        },
-        {
-          "kind": "block",
-          "type": "controls_whileUntil"
-        },
-        {
-          "kind": "block",
-          "type": "controls_for"
-        }
-      ]
-    },
-    {
-      "kind": "category",
-      "name": "逻辑",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "logic_compare"
-        },
-        {
-          "kind": "block",
-          "type": "logic_operation"
-        },
-        {
-          "kind": "block",
-          "type": "logic_boolean"
-        }
-      ]
-    }
-  ]
-}
 
+let direction = ref(1);
+let person = ref();
+let personimg = ref();
+let marker = ref();
 let codeContent = ref();
+let workspace: any;
+function change(num: any) {
+  return num * 10 + "%"
+}
+let startnum = [4, 1];
+let endnum = [1, 9];
+let start = startnum.map(change)
+let end = endnum.map(change)
+
+
 onMounted(() => {
+  //////
+  personimg.value.style.translate = "0px";
+  [person.value.style.top, person.value.style.left] = start;
+  [marker.value.style.top, marker.value.style.left] = end;
   let workspace = Blockly.inject('blocklyDiv', {
     toolbox: toolbox,
     grid: {
@@ -86,7 +123,11 @@ onMounted(() => {
       colour: '#ccc',
       snap: true
     },
+    maxBlocks: 10
   });
+
+  ////
+
   function updateCode(event: any) {
     const code = javascriptGenerator.workspaceToCode(workspace);
     console.log(code)
@@ -95,69 +136,104 @@ onMounted(() => {
   workspace.addChangeListener(updateCode);
 });
 
-////////////////////////////////////////////
+function runCode() {
+  let LoopTrap = 10000;
+  console.log(start)
+  // Blockly.JavaScript.INFINITE_LOOP_TRAP =
+  //   'if (--window.LoopTrap == 0) throw "出现死循环！";\n';
+  var code = javascriptGenerator.workspaceToCode(workspace);
+  console.log(code);
+  try {
+    eval(code);
+  } catch (e) {
+    alert(e);
+  }
+  //   setTimeout(function () {
+  //     if (!not_end()) {
+  //       alert("你成功了！\n\n使用了" + workspace.getAllBlocks(false).length + "个块\n");
+  //     }
+  //     else {
+  //       alert("你失败了！");
+  //     }
+  //     reset();
+  //   }, current_game.delay);
+  //   current_game.delay += 1000;
+}
+let timegap = [0, -196, -392, -588, -735];
+
+function turnRight() {
+  direction.value++;
+  if (direction.value > 4) {
+    direction.value = 1;
+  }
+  if (direction.value < 1) {
+    direction.value = 4
+  }
+  let delay = 0;
+  let pos = timegap[direction.value - 1];
+  for (let i = 0; i < 4; i++) {
+    setTimeout(() => {
+      pos += 49;
+      personimg.value.style.translate = pos + "px";
+    }, delay)
+    delay += 100;
+  }
+}
+
+function turnLeft() {
+  direction.value--;
+  if (direction.value > 4) {
+    direction.value = 1;
+  }
+  if (direction.value < 1) {
+    direction.value = 4
+  }
+  let delay = 0;
+  let pos = timegap[direction.value + 1];
+  for (let i = 0; i < 4; i++) {
+    setTimeout(() => {
+      pos -= 49;
+      personimg.value.style.translate = pos + "px";
+    }, delay)
+    delay += 100;
+  }
+};
+function reset() {
+
+}
+
+
+function moveForward() {
+  if (direction.value == 1) {
+    startnum[0]--;
+  }
+  else if (direction.value == 2) {
+    startnum[1]++;
+  }
+  else if (direction.value == 3) {
+    startnum[0]++;
+  }
+  else if (direction.value == 4) {
+    startnum[1]--;
+  }
+  person.value.style.left = change(startnum[1])
+  person.value.style.top = change(startnum[0])
+}
+
 let isActive = ref(false);
 function showCode() {
   isActive.value = (isActive.value == true ? false : true)
 }
 
 
-
-
 </script>
-
-<template>
-  <div class="body-wrap">
-    <div class="head-wrap">
-      <div class="head">课程A：任务一</div>
-    </div>
-    <div class="wrap">
-      <div class="wrap-left">
-        <div class="map-wrap">
-          <img src="https://blockly.games/maze/tiles_pegman.png" alt="">
-          <div class="person-wrap">
-            <div class="person">
-              <img src="@/assets/img/person.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="list-wrap">
-          <div class="list">
-            <div class="list-head">任务清单</div>
-            <ul class="list-content">
-              <li v-for="(item, idx) in list">
-                {{ item.name }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="wrap-right">
-        <div class="dialog-wrap">
-          <div class="dialog">
-            <Dialog />
-          </div>
-        </div>
-        <div class="code">
-
-          <div class="code-wrap">
-            <div class="code-area" id="blocklyDiv"></div>
-            <div class="js-code-wrap">
-              <div :class="isActive ? 'js-code-content active' : 'js-code-content'">
-                <div class="js-code">
-                  <p ref="codeContent"></p>
-                </div>
-                <buttom @click="showCode">查看代码</buttom>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <style scoped lang="less">
+@startLeft: 10%;
+@startTop: 40%;
+
+@markerLeft: 90%;
+@markerTop: 10%;
+
 .body-wrap {
   height: 100vh;
   width: 100%;
@@ -213,10 +289,11 @@ function showCode() {
           height: 50px;
           width: 50px;
           position: absolute;
-          left: 10%;
-          top: 40%;
+          left: @startLeft;
+          top: @startTop;
           transform: translate(-50%, -50%);
           z-index: 999;
+          transition: all 1s;
 
           .person {
             height: 50px;
@@ -224,24 +301,103 @@ function showCode() {
             overflow: hidden;
             position: relative;
 
-            @keyframes wolk {
-              0% {
+            @keyframes turn_right_1 {
+              from {
                 transform: translateX(0px);
               }
 
+              to {
+                transform: translateX(-196px);
+              }
+            }
+
+            @keyframes turn_right_2 {
+              from {
+                transform: translateX(-196px);
+              }
+
+              to {
+                transform: translateX(-392px);
+              }
+            }
+
+            @keyframes turn_right_3 {
+              from {
+                transform: translateX(-392px);
+              }
+
+              to {
+                transform: translateX(-588px);
+              }
+            }
+
+            @keyframes turn_right_0 {
+              0% {
+                transform: translateX(-588px);
+              }
+
               100% {
-                transform: translateX(-980px);
+                transform: translateX(-735px);
+              }
+            }
+
+            @keyframes turn_left_0 {
+              from {
+                transform: translateX(-196px);
+              }
+
+              to {
+                transform: translateX(0px);
+              }
+            }
+
+            @keyframes turn_left_1 {
+              from {
+                transform: translateX(-392px);
+              }
+
+              to {
+                transform: translateX(-196px);
+              }
+            }
+
+            @keyframes turn_left_2 {
+              from {
+                transform: translateX(-588px);
+              }
+
+              to {
+                transform: translateX(-392px);
+              }
+            }
+
+            @keyframes turn_left_3 {
+              from {
+                transform: translateX(-735px);
+              }
+
+              to {
+                transform: translateX(-588px);
               }
             }
 
             img {
-
               height: 50px;
               width: 1029px;
-              transform: translateX(-980px);
-              animation: wolk 3s steps(20) 0s infinite;
+              transform: translateX(-588);
             }
           }
+        }
+
+        .marker {
+          height: 34px;
+          width: 20px;
+          position: absolute;
+          left: @markerLeft;
+          top: @markerTop;
+          transform: translate(-50%, -50%);
+          z-index: 999;
+          border-radius: 50%;
         }
       }
 
@@ -336,10 +492,6 @@ function showCode() {
 
               &.active {
                 right: 0%;
-
-                .js-code {
-                  display: block;
-                }
               }
 
               .js-code {
@@ -356,9 +508,10 @@ function showCode() {
                 }
               }
 
+              @width: 80px;
+              @height: 25px;
+
               buttom {
-                @width: 80px;
-                @height: 25px;
                 border-radius: 5px;
                 position: absolute;
                 white-space: nowrap;
@@ -372,9 +525,24 @@ function showCode() {
                 text-align: center;
                 line-height: @height;
               }
+
+              .runcode {
+                height: @height;
+                width: @width ;
+                left: -@width;
+                bottom: 0px;
+                text-align: center;
+                line-height: @height;
+                background-color: #000000;
+                position: absolute;
+                color: #Fff;
+                border-radius: 15px;
+              }
             }
           }
         }
+
+
       }
     }
   }

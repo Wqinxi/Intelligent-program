@@ -5,10 +5,12 @@ import DiaboxVue from '@/views/student/program/Diabox.vue'
 import { useMessageStore } from '@/stores/message'
 import { useToken } from '@/stores/token'
 import apiComment from '@/api/request.js';
+import { useCurrentStackStore } from '@/stores/currentTask'
+let task = useCurrentStackStore().task
 let { getComment } = apiComment()
 let messages = useMessageStore().messages
 let token = useToken().token;
-getComment(token)
+getComment(token, task)
 
 const showbox = ref(false)
 
