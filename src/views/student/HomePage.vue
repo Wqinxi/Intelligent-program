@@ -113,7 +113,6 @@ function toTheclass(task: number, progress: string) {
                     }
 
                     &:hover>li:not(:hover) {
-                        filter: blur(10px);
                         transform: scale(0.9, 0.9);
                     }
                 }
