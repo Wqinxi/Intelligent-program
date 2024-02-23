@@ -50,7 +50,6 @@ const router = createRouter({
           path: 'task',
           component: () => import('@/views/student/program/Index.vue')
         }
-        // ProgramRouter
       ]
     },
     {
