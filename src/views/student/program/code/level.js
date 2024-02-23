@@ -47,6 +47,8 @@ export default () => {
             blocks: [
                 'forward',
                 'change_direction',
+                "while_do",
+                "if_else"
             ],
             game: {
                 player: {
@@ -76,6 +78,8 @@ export default () => {
             blocks: [
                 'forward',
                 'change_direction',
+                "while_do",
+                "if_else"
             ],
             game: {
                 player: {
