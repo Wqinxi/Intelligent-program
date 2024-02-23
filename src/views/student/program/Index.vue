@@ -1,7 +1,7 @@
 <template>
   <div class="body-wrap">
     <div class="head-wrap">
-      <div class="head">课程A：任务一</div>
+      <div class="head">课程A：任务{{ toChineseNum(currentTask + 1) }}</div>
     </div>
     <div class="wrap">
       <div class="wrap-left">
@@ -20,8 +20,8 @@
           <div class="list">
             <div class="list-head">任务清单</div>
             <ul class="list-content">
-              <li v-for="(item, idx) in list">
-                {{ item.name }}
+              <li v-for="(item) in levels.length" @click="changeTask(item - 1)">
+                任务{{ toChineseNum(item) }}
               </li>
             </ul>
           </div>
@@ -68,33 +68,31 @@ import useLevel from "@/views/student/program/code/level.js"
 import usePlayer from "@/views/student/program/code/player.js"
 import { ref, onMounted } from 'vue';
 import { javascriptGenerator } from 'blockly/javascript';
+import { block } from "blockly/core/tooltip";
 
 Blockly.setLocale(hans);
 
 const route = useRoute()
 ////////////////////////////////////////// code区
-let list = [
-  {
-    imgSrc: "adsfadsf",
-    name: "任务一"
-  }, {
-    imgSrc: "adsfadsf",
-    name: "任务二"
-  },
-  {
-    imgSrc: "adsfadsf",
-    name: "任务三"
-  },
-  {
-    imgSrc: "adsfadsf",
-    name: "任务四"
-  },
-  {
-    imgSrc: "adsfadsf",
-    name: "任务五"
-  },
-]
 
+function toChineseNum(number: any) {
+  const chineseNum = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+  const chineseUnit = ["", "十", "百", "千", "万", "亿"];
+  let numStr = number.toString();
+  let len = numStr.length;
+  let str = "";
+  for (let i = 0; i < len; i++) {
+    str += chineseNum[parseInt(numStr[i])] + chineseUnit[len - 1 - i];
+  }
+  str = str.replace(/零[十百千]/g, "零");
+  str = str.replace(/零+/g, "零");
+  str = str.replace(/^零+/, "");
+  str = str.replace(/零+$/, "");
+  if (str[str.length - 1] === "零") {
+    str = str.slice(0, -1);
+  }
+  return str;
+}
 const router = useRouter()
 /////////////////////
 
@@ -222,60 +220,69 @@ let {
 } = usePlayer()
 
 
-
+let currentTask = ref(0);
+function changeTask(idx: number) {
+  currentTask.value = idx
+  let blocklyDiv = document.querySelector('#blocklyDiv')
+  console.log(blocklyDiv)
+  while (blocklyDiv.firstChild) {
+    blocklyDiv.removeChild(blocklyDiv.firstChild)
+  }
+  console.log(blocklyDiv)
+  load_level(levels[currentTask.value]);
+}
 let current_game = new game();
 let mazemap = ref()//地图
 let mazeman = ref();//人的位置
 let mazeend = ref();//终点
 let codeContent = ref();
 let personimg = ref();//人物图像
-onMounted(() => {
-  load_level(levels[1]);
-  function load_level(level: any) {
-    let toolbox: any = {
-      "kind": "flyoutToolbox",
-      "contents": []
-    };
-    for (let i = 0; i < level.blocks.length; i++) {
-      toolbox.contents.push({
-        "kind": "block",
-        "type": level.blocks[i]
-      });
-    }
 
-    current_game.workspace = Blockly.inject('blocklyDiv', {
-      toolbox: toolbox,
-      grid: {
-        spacing: 15,
-        length: 4,
-        colour: '#ccc',
-        snap: true
-      },
-      maxBlocks: 10
+function load_level(level: any) {
+  let toolbox: any = {
+    "kind": "flyoutToolbox",
+    "contents": []
+  };
+  for (let i = 0; i < level.blocks.length; i++) {
+    toolbox.contents.push({
+      "kind": "block",
+      "type": level.blocks[i]
     });
-
-
-    Blockly.getMainWorkspace().options.maxBlocks = ('max_blocks' in level) ? (level.max_blocks) : Infinity;
-    current_game.player.direction = level.game.player.direction;
-    console.log(level.game.player.direction, level)
-    current_game.init_direction = level.game.player.direction;
-    current_game.player.position = { x: level.game.player.x, y: level.game.player.y };
-    current_game.init_position = { x: level.game.player.x, y: level.game.player.y };
-    current_game.goal = { x: level.game.goal.x, y: level.game.goal.y };
-    current_game.path = level.game.path;
-    current_game.delay = 0;
-
-    mazemap.value.src = level.img
-    // personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
-    personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
-    mazeman.value.style.left = 10 * current_game.init_position.x + "%";
-    mazeman.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
-    mazeend.value.style.left = 10 * current_game.goal.x + "%";
-    mazeend.value.style.top = 10 * (10 - current_game.goal.y) + "%";
   }
 
+  current_game.workspace = Blockly.inject('blocklyDiv', {
+    toolbox: toolbox,
+    grid: {
+      spacing: 15,
+      length: 4,
+      colour: '#ccc',
+      snap: true
+    },
+    maxBlocks: 10
+  });
 
 
+  Blockly.getMainWorkspace().options.maxBlocks = ('max_blocks' in level) ? (level.max_blocks) : Infinity;
+  current_game.player.direction = level.game.player.direction;
+  console.log(level.game.player.direction, level)
+  current_game.init_direction = level.game.player.direction;
+  current_game.player.position = { x: level.game.player.x, y: level.game.player.y };
+  current_game.init_position = { x: level.game.player.x, y: level.game.player.y };
+  current_game.goal = { x: level.game.goal.x, y: level.game.goal.y };
+  current_game.path = level.game.path;
+  current_game.delay = 0;
+  console.log(mazemap.value.src, level.img)
+
+  mazemap.value.src = level.img
+  // personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
+  personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
+  mazeman.value.style.left = 10 * current_game.init_position.x + "%";
+  mazeman.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
+  mazeend.value.style.left = 10 * current_game.goal.x + "%";
+  mazeend.value.style.top = 10 * (10 - current_game.goal.y) + "%";
+}
+onMounted(() => {
+  load_level(levels[currentTask.value]);
 
   function updateCode(event: any) {
     const code = javascriptGenerator.workspaceToCode(current_game.workspace);
@@ -314,11 +321,11 @@ function toNumPx(str: any) {
 
 function move(x: any, y: any) {
   // for (var i = 1; i <= 10; i++) {
-  // setTimeout(function () {
-  mazeman.value.style.left = toNum(mazeman.value.style.left) + 10 * x + "%";
-  mazeman.value.style.top = toNum(mazeman.value.style.top) - 10 * y + "%";
-  // }, current_game.delay);
-  current_game.delay += 2000;
+  setTimeout(function () {
+    mazeman.value.style.left = toNum(mazeman.value.style.left) + 10 * x + "%";
+    mazeman.value.style.top = toNum(mazeman.value.style.top) - 10 * y + "%";
+  }, current_game.delay);
+  current_game.delay += 1000;
   // }
   console.log(mazeman.value.style.left, mazeman.value.style.top)
 }
@@ -327,20 +334,18 @@ function change_dir(x: any) {
   if (x == 1) {
     for (var i = 1; i <= 4; i++) {
       setTimeout(() => {
-        console.log(personimg.value.style.translate, "[][]")
-        personimg.value.style.translate = toNumPx(personimg.value.style.translate + 49) % 784 + "px";
-        console.log(personimg.value.style.translate)
-      }, 250);
+        personimg.value.style.translate = (toNumPx(personimg.value.style.translate) + 49) % 784 + "px";
+      }, current_game.delay);
+      current_game.delay += 250;
     }
-    current_game.delay += 1000;
 
   }
   else {
     for (var i = 1; i <= 4; i++) {
       setTimeout(() => {
-        personimg.value.style.translate = toNumPx(personimg.value.style.translate - 49 + 784) % 784 + "px";
-      }, 250);
-      current_game.delay += 1000;
+        personimg.value.style.translate = (toNumPx(personimg.value.style.translate) - 49 + 784) % 784 + "px";
+      }, current_game.delay);
+      current_game.delay += 250;
     }
   }
 }
