@@ -256,16 +256,18 @@ onMounted(() => {
 
 
     Blockly.getMainWorkspace().options.maxBlocks = ('max_blocks' in level) ? (level.max_blocks) : Infinity;
-    console.log(current_game.player.direction)
     current_game.player.direction = level.game.player.direction;
+    console.log(level.game.player.direction, level)
     current_game.init_direction = level.game.player.direction;
     current_game.player.position = { x: level.game.player.x, y: level.game.player.y };
     current_game.init_position = { x: level.game.player.x, y: level.game.player.y };
     current_game.goal = { x: level.game.goal.x, y: level.game.goal.y };
     current_game.path = level.game.path;
-    current_game.delay = 100;
+    current_game.delay = 0;
+
     mazemap.value.src = level.img
-    personimg.value.style.backgroundPosition = 49 * 4 * current_game.init_direction + "px";
+    // personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
+    personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
     mazeman.value.style.left = 10 * current_game.init_position.x + "%";
     mazeman.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
     mazeend.value.style.left = 10 * current_game.goal.x + "%";
@@ -303,37 +305,42 @@ function toNum(percent: any) {
 }
 
 function toNumPx(str: any) {
+  console.log(str, "str")
   var res = str.replace("px", "");
   res = Number(res);
+  console.log(res, "res")
   return res;
 }
 
 function move(x: any, y: any) {
-  for (var i = 1; i <= 10; i++) {
-    setTimeout(function () {
-      mazeman.value.style.left = toNum(mazeman.value.style.left) + x + "%";
-      mazeman.value.style.top = toNum(mazeman.value.style.top) - y + "%";
-    }, current_game.delay);
-    // current_game.delay += 100;
-  }
+  // for (var i = 1; i <= 10; i++) {
+  // setTimeout(function () {
+  mazeman.value.style.left = toNum(mazeman.value.style.left) + 10 * x + "%";
+  mazeman.value.style.top = toNum(mazeman.value.style.top) - 10 * y + "%";
+  // }, current_game.delay);
+  current_game.delay += 2000;
+  // }
   console.log(mazeman.value.style.left, mazeman.value.style.top)
 }
 
 function change_dir(x: any) {
   if (x == 1) {
     for (var i = 1; i <= 4; i++) {
-      setTimeout(function () {
-        personimg.value.style.translate = -(personimg.value.style.translate - 49 + 784) % 784 + "px";
-      }, current_game.delay);
-      // current_game.delay += 250;
+      setTimeout(() => {
+        console.log(personimg.value.style.translate, "[][]")
+        personimg.value.style.translate = toNumPx(personimg.value.style.translate + 49) % 784 + "px";
+        console.log(personimg.value.style.translate)
+      }, 250);
     }
+    current_game.delay += 1000;
+
   }
   else {
     for (var i = 1; i <= 4; i++) {
-      setTimeout(function () {
-        personimg.value.style.translate = -(personimg.value.style.translate + 49) % 784 + "px";
-      }, current_game.delay);
-      // current_game.delay += 250;
+      setTimeout(() => {
+        personimg.value.style.translate = toNumPx(personimg.value.style.translate - 49 + 784) % 784 + "px";
+      }, 250);
+      current_game.delay += 1000;
     }
   }
 }
@@ -344,8 +351,8 @@ function reset() {
   personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
   mazeman.value.style.left = 10 * current_game.init_position.x + "%";
   mazeman.value.style.top = 10 * (10 - current_game.init_position.y) + "%";
-  current_game.delay = 100;
-  // console.log(current_game.player.to_string());
+  current_game.delay = 0;
+  console.log(current_game.player.to_string());
 }
 
 // function countBlock(){
@@ -383,7 +390,7 @@ function forward() {
 
 function turn_left() {
   eval(javascriptGenerator.INFINITE_LOOP_TRAP);
-  var new_direction = (current_game.player.direction + 1) % player_direction_max;
+  var new_direction = (current_game.player.direction - 1) % player_direction_max;
 
   // setTimeout(function() {
   // 	mazeman.value.style.animation = "turn_left_" + current_game.player.direction + " 1s steps(4) forwards";
@@ -395,12 +402,12 @@ function turn_left() {
   change_dir(1);
 
   current_game.player.direction = new_direction;
-  // console.log(current_game.player.to_string());
+  console.log(current_game.player.to_string());
 }
 
 function turn_right() {
   eval(javascriptGenerator.INFINITE_LOOP_TRAP);
-  var new_direction = ((current_game.player.direction - 1) % player_direction_max + player_direction_max) % player_direction_max;
+  var new_direction = ((current_game.player.direction + 1) % player_direction_max + player_direction_max) % player_direction_max;
 
   // setTimeout(function() {
   // 	mazeman.value.style.animation = "turn_right_" + current_game.player.direction + " 1s steps(4) forwards";
@@ -411,7 +418,7 @@ function turn_right() {
   change_dir(-1);
 
   current_game.player.direction = new_direction;
-  // console.log(current_game.player.to_string());
+  console.log(current_game.player.to_string());
 }
 
 function not_end() {
@@ -507,7 +514,7 @@ function runCode() {
     }
     reset();
   }, current_game.delay);
-  // current_game.delay += 1000;
+  current_game.delay += 1000;
 }
 ////
 

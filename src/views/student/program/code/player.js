@@ -1,10 +1,10 @@
 import Blockly from 'blockly';
 import { javascriptGenerator } from 'blockly/javascript';
 export default () => {
-    let player_direction_left = 1;
     let player_direction_up = 0;
-    let player_direction_right = 3;
+    let player_direction_right = 1;
     let player_direction_down = 2;
+    let player_direction_left = 3;
     let player_direction_max = 4;
 
     class player {
