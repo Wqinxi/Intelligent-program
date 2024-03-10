@@ -15,7 +15,7 @@ let token = useToken().token
 const closebox = defineEmits(['close']);
 
 const message = ref('');
-const messageContainer = ref(null);
+const messageContainer = ref();
 function sendMessage() {
   if (message.value.trim() !== '') {
     messages.push({ sender: 'me', content: message.value, userName: "我" });
@@ -134,41 +134,45 @@ function sendMessageByEnter() {
   }
 }
 
-
-
-
-
 .input-wrapper {
-  margin-top: 43%;
+  margin-top: auto;
   display: flex;
   align-items: center;
+  height: 15vh;
+
+  .input-field {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-right: 10px;
+    display:flex;
+    margin-top:4vh;
+    }
+
+  .send-button {
+    padding: 5px 10px;
+    background-color: #a2c2e4;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display:flex;
+    margin-top:4vh;
+    }
+
+  .return-button {
+    padding: 5px 10px;
+    background-color: #ffde90;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top:4vh;
+    }
 }
 
-.input-field {
-  width: 200px;
-  height: 30px;
-  padding: 5px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  margin-right: 10px;
-}
 
-.send-button {
-  padding: 5px 10px;
-  background-color: #a2c2e4;
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.return-button {
-  padding: 5px 10px;
-  background-color: #ffde90;
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 5px;
-}
 </style>

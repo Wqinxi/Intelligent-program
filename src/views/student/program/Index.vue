@@ -110,7 +110,7 @@ Blockly.Blocks['forward'] = {
 };
 
 // 向前走转换js代码定义
-javascriptGenerator.forBlock['forward'] = function (block) {
+javascriptGenerator.forBlock['forward'] = function (block: any) {
   // TODO: Assemble javascript into code variable.
   var code = 'forward();\n';
   return code;
@@ -132,7 +132,7 @@ Blockly.Blocks['change_direction'] = {
 };
 
 // 转弯转换js代码定义
-javascriptGenerator.forBlock['change_direction'] = function (block, generator) {
+javascriptGenerator.forBlock['change_direction'] = function (block: any, generator: any) {
   var dropdown_dir = block.getFieldValue('dir');
   // TODO: Assemble javascript into code variable.
   if (dropdown_dir == 'left') {
@@ -160,7 +160,7 @@ Blockly.Blocks['while_do'] = {
 };
 
 // 循环js代码转换定义
-javascriptGenerator.forBlock['while_do'] = function (block, generator) {
+javascriptGenerator.forBlock['while_do'] = function (block: any, generator: any) {
   var statements_do = generator.statementToCode(block, 'do');
   // TODO: Assemble javascript into code variable.
   var code = 'while(not_end()){\n' + statements_do + '}\n';
@@ -188,11 +188,12 @@ Blockly.Blocks['if_else'] = {
 };
 
 // 选择转换js代码定义
-javascriptGenerator.forBlock['if_else'] = function (block, generator) {
+javascriptGenerator.forBlock['if_else'] = function (block: any, generator: any) {
   var dropdown_choice = block.getFieldValue('choice');
   var statements_true = generator.statementToCode(block, 'true');
   var statements_false = generator.statementToCode(block, 'false');
   // TODO: Assemble javascript into code variable.
+
   if (dropdown_choice == 'ahead') {
     var code = 'if(exist_path_ahead()){\n' + statements_true + '}\nelse{\n' + statements_false + '}\n';
   }
@@ -201,6 +202,9 @@ javascriptGenerator.forBlock['if_else'] = function (block, generator) {
   }
   else if (dropdown_choice == 'right') {
     var code = 'if(exist_path_right()){\n' + statements_true + '}\nelse{\n' + statements_false + '}\n';
+  }
+  else{
+    var code = '';
   }
   return code;
 };
@@ -221,9 +225,10 @@ let {
 
 
 let currentTask = ref(0);
+
 function changeTask(idx: number) {
   currentTask.value = idx
-  let blocklyDiv = document.querySelector('#blocklyDiv')
+  let blocklyDiv = (document.querySelector('#blocklyDiv')as Element);
   console.log(blocklyDiv)
   while (blocklyDiv.firstChild) {
     blocklyDiv.removeChild(blocklyDiv.firstChild)
