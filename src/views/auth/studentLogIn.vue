@@ -20,39 +20,39 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
-import { useToken } from '@/stores/token'
-let token = useToken().token
-let changeToken = useToken().changeToken
+import { useUserDataStore } from '@/stores/userData';
+let useUserData = useUserDataStore()// 有token,username,password
+
 const router = useRouter()
 let userName = ref('')
 let password = ref('')
 function login() {
-    axios({
-        url: "http://127.0.0.1:4523/m1/4023739-0-default/login",
-        method: 'post',
-        params: {
-            password,
-            userName
-        }
-    }).then(res => {
-        let newToken = res.data.token
-        changeToken(newToken)
-    })
+    // axios({
+    //     url: "http://127.0.0.1:4523/m1/4023739-0-default/login",
+    //     method: 'post',
+    //     params: {
+    //         password,
+    //         userName
+    //     }
+    // }).then(res => {
+    //     let newToken = res.data.token
+    //     changeToken(newToken)
+    // })
     router.push("/student")
 }
 function register() {
-    axios({
-        url: "http://127.0.0.1:4523/m1/4023739-0-default/register",
-        method: 'post',
-        params: {
-            password,
-            userName
-        }
-    }).then(res => {
-        let newToken = res.data.token
-        changeToken(newToken)
-    })
-    router.push("/student")
+    // 发送请求 
+    // axios({
+    //     url: "http://127.0.0.1:4523/m1/4023739-0-default/register",
+    //     method: 'post',
+    //     params: {
+    //         password,
+    //         userName
+    //     }
+    // }).then(res => {
+    //     let newToken = res.data.token
+    //     changeToken(newToken)
+    // })
 }
 </script>
 
@@ -78,7 +78,7 @@ function register() {
             height: 25px;
 
             input {
-                background-color: #ffe4c4;
+                background-color: transparent;
                 height: 25px;
                 width: 300px;
                 outline: none;
@@ -102,10 +102,14 @@ function register() {
 
             button {
                 height: 100%;
-                width: 50px;
+                width: 100px;
                 line-height: 25px;
-                border: #ffe4c4 1px solid;
-                background: #f1cbdc;
+                border: none;
+                background: #ffffff;
+
+                &:hover {
+                    border: 1px solid #000;
+                }
             }
         }
     }

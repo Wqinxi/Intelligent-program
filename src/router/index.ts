@@ -19,10 +19,6 @@ const router = createRouter({
           path: 'login',
           component: () => import('@/views/auth/LoginPage.vue')
 
-        },
-        {
-          path: 'register',
-          component: () => import('@/views/auth/RegisterPage.vue')
         }
         , {
           path: 'studentLogIn',
@@ -48,7 +44,7 @@ const router = createRouter({
         },
         {
           path: 'task',
-          component: () => import('@/views/student/program/Index.vue')
+          component: () => import('@/views/student/Code.vue')
         }
       ]
     },

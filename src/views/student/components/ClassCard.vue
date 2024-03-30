@@ -1,83 +1,76 @@
 <!-- 学生首页的每个课程卡片 -->
 <template>
-    <div :class="[Content.progress == '0%' ? 'class  active' : 'class']">
+    <div :class="[detail.progress == '0%' ? 'class  active' : 'class']">
         <div class="top-wrap">
             <div class="top">
                 <div class="header">
                     <p>
-                        {{ Content.title }}
+                        {{ task + 1 }}
                     </p>
                 </div>
                 <div class="detail">
                     <p calss="content">
-                    <h5>详情:</h5>{{ Content.detail }}</p>
+                    <h5>{{ detail.title }}:</h5>{{ detail.detail }}
+                    </p>
                 </div>
+                <div class="pro">{{ detail.progress }}</div>
             </div>
         </div>
         <div class="progress-wrap">
-            <div class="progress" :style="{ width: Content.progress }">
+            <div class="progress" :style="{
+        width: detail.progress, backgroundColor: (detail.progress == '100%' ? '#e8e839' : '#5d5959')
+    }">
             </div>
-            <p>进度：{{ Content.progress }}</p>
         </div>
     </div>
-</template> 
+</template>
 <script lang="ts" setup>
 import { defineProps, withDefaults } from 'vue';
-defineProps(['task', 'Content']);
+defineProps(['task', 'detail']);
 
 </script>
 
 <style scoped lang="less">
-@bgcolor: #d9d9d9;
-@color: #000000;
-@proGressBarColor: #5d5959;
-@proGressColor: rgb(234, 255, 0);
-
-
-
-
 .class {
     &.active {
         opacity: 0.3;
+        background-color: #d9d9d9;
     }
 
-    height: 249px;
-    width: 219px;
+    color:#9d9e9e;
+    height: 200px;
+    width: 170px;
     position: relative;
-    overflow: hidden;
-    background: @bgcolor;
-    color: @color;
-    border-radius: .7rem;
-
-
-
-
+    background: #ffffff;
 
     .top-wrap {
-        padding: 10px 20.5px;
-        height: 186px;
+        height: 170px;
         width: 100%;
         position: relative;
+        border-bottom: 1px solid #5d59598d;
         overflow: hidden;
 
         .top {
             height: 100%;
             width: 100%;
-            background-color: @bgcolor;
 
             .header {
-                font-size: 32px;
-                font-weight: 400;
+                height: 40px;
+                font-size: 30px;
+                font-weight: 600;
+
+                p {
+                    margin-left: 5px;
+                }
             }
 
             .detail {
                 width: 178px;
-                height: 131px;
+                height: 100px;
+                padding: 5px;
 
                 p {
-                    color: @color;
                     width: 100%;
-                    height: 121px;
                     line-height: 20px;
                     word-wrap: break-word;
 
@@ -86,6 +79,13 @@ defineProps(['task', 'Content']);
                         font-weight: 400;
                     }
                 }
+            }
+
+            .pro {
+                height: 30px;
+                width: 100%;
+                font-size: 30px;
+                line-height: 30px;
             }
         }
     }
@@ -97,7 +97,6 @@ defineProps(['task', 'Content']);
     }
 
     &:hover .progress-wrap .progress {
-
         background-image: linear-gradient(to right,
                 rgb(250, 82, 82),
                 rgb(250, 82, 82) 16.65%,
@@ -112,37 +111,21 @@ defineProps(['task', 'Content']);
                 rgb(253, 126, 20) 83.25%,
                 rgb(253, 126, 20) 100%,
                 rgb(250, 82, 82) 100%);
-        animation: 2s linear dance6123 infinite;
-        transform: scale(1) translateY(-1px);
+        animation: 10s linear dance6123 infinite;
+        transform: scale(1) translateY(0px);
     }
 
     .progress-wrap {
-        height: 63px;
+        height: 30px;
+        width: 170px;
         background-color: #ffffff;
-        position: relative;
-
-
+        position: absolute;
+        bottom: 0px;
 
         .progress {
-            background-color: @proGressBarColor;
-            width: 80%;
+            background-color: #5d5959;
+            width: 100%;
             height: 100%;
-            line-height: 63px;
-            padding-left: 5px;
-            font-size: 32px;
-        }
-
-        p {
-            position: absolute;
-            top: 0px;
-            z-index: 10;
-            color: @proGressColor;
-            line-height: 63px;
-            text-indent: 1em;
-            text-align: center;
-            font-size: 32px;
-            flex-wrap: nowrap;
-            text-shadow: 0px 0px 15px @proGressColor;
         }
     }
 }

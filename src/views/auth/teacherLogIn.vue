@@ -20,9 +20,6 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
-import { useToken } from '@/stores/token'
-let token = useToken().token
-let changeToken = useToken().changeToken
 const router = useRouter()
 let userName = ref('')
 let password = ref('')
@@ -36,7 +33,6 @@ function login() {
         }
     }).then(res => {
         let newToken = res.data.token
-        changeToken(newToken)
     })
     router.push("/teacher")
 }
@@ -50,7 +46,6 @@ function register() {
         }
     }).then(res => {
         let newToken = res.data.token
-        changeToken(newToken)
     })
     router.push("/teacher")
 }

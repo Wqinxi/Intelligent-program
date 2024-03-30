@@ -1,6 +1,6 @@
-import useGame from "@/views/student/program/code/game.js"
-import useLevel from "@/views/student/program/code/level.js"
-import usePlayer from "@/views/student/program/code/player.js"
+import useGame from "@/views/student/blockData/game.js"
+import useLevel from "@/views/student/blockData/level.js"
+import usePlayer from "@/views/student/blockData/player.js"
 import Blockly from 'blockly';
 import { javascriptGenerator } from 'blockly/javascript';
 import * as hans from 'blockly/msg/zh-hans'

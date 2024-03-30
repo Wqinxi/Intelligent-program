@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import { useRoute } from "vue-router";
-import Header from '@/views/student/Header.vue'
+import Header from "@/views/student/components/Header.vue"
 const route = useRoute()
 </script>
 

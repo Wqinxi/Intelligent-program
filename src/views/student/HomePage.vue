@@ -1,31 +1,25 @@
 <!-- 学生首页 -->
 <script setup lang="ts">
-import Logo from '@/views/student/Logo.vue'
-import Class from '@/views/student/Class.vue'
+import ClassCard from '@/views/student/components/ClassCard.vue'
+import { storeToRefs } from 'pinia';
+import mitter from '@/utils/emitter';
 import { useRouter } from 'vue-router'
-import { useCurrentStackStore } from '@/stores/currentTask'
-import { useContentstore } from "@/stores/homeTask"
-import { useToken } from '@/stores/token'
-import API from '@/api/request.js';
-const { GetHomeTask } = API();
-let token = useToken().token;
-const CurrentStackStore = useCurrentStackStore()
-let Content = useContentstore().content;
-
-GetHomeTask(token)
-
+import { useUserDataStore } from '@/stores/userData'
+import { useCurrentTaskStore } from '@/stores/activeTask';
+let loge = 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg'
+let userDataStore = useUserDataStore()
+let CurrentTaskStore = useCurrentTaskStore()
+let { userData } = userDataStore
 const router = useRouter()
-function toTheclass(task: number, progress: string) {
-    if (progress != '0%') {
-        router.push({
-            path: '/student/video',
-        })
-        CurrentStackStore.task = task
-        console.log("当前是第", CurrentStackStore.task, "个课程")
-    }
-    else {
-        alert('加油!!! (ง •_•)ง')
-    }
+
+function toTheclass(task: number) {
+    CurrentTaskStore.currentTask = task
+    // console.log(userDataStore.userData.Data[useCurrentTaskStore().currentTask])
+    mitter.emit('send-data', userDataStore.userData.Data[useCurrentTaskStore().currentTask])
+    localStorage.setItem('currentTask', JSON.stringify(task))
+    router.push({
+        path: '/student/video',
+    })
 }
 </script>
 
@@ -33,24 +27,24 @@ function toTheclass(task: number, progress: string) {
     <div class="body-wrap">
         <div class="body">
             <div class="logo">
-                <Logo />
+                <img :src="loge" alt="">
             </div>
             <div class="content">
                 <div class="content-wrap">
                     <ul>
-                        <li v-for="(item, idx) in  Content " @click="toTheclass(idx, item.progress)">
-                            <Class :Content="item" :task="idx" />
+                        <li v-for="(item, idx) in  userData.Data " @click="toTheclass(idx)">
+                            <ClassCard :detail="item" :task="idx" />
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-</template>    
+</template>
 <style scoped lang="less">
 .body-wrap {
+    background-color: #ecf9f8;
     position: relative;
-    background-image: linear-gradient(to bottom, #3778d9b4, #7f94e19a, #afb4e9, #d7d6f1, #fafafa);
     height: 100vh;
 
     .body {
@@ -62,8 +56,15 @@ function toTheclass(task: number, progress: string) {
         .logo {
             position: absolute;
             top: 8.6vh;
+            height: 20vh;
+            width: 60vh;
             left: 50%;
             transform: translateX(-50%);
+            background-color: #4d4d4d;
+
+            img {
+                width: 100%;
+            }
         }
 
         .content {
@@ -89,31 +90,25 @@ function toTheclass(task: number, progress: string) {
                     position: relative;
                     right: 5.25vh;
 
-
-
-
                     li {
+                        height: 200px;
+                        width: 170px;
                         margin-left: 10.5vh;
-                        -ms-flex-item-align: center;
-                        height: 249px;
-                        width: 219px;
                         margin-bottom: 88px;
                         cursor: pointer;
-                        box-shadow: 22px 22px 45px #5a5a5aab,
-                            -22px -22px 45px #ffffff;
                         transition: all .5s;
-                        border-radius: 10px 0px 10px 10px;
+                        box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, .37);
 
                         &:hover {
-                            box-shadow: 11px 11px 22px #5a5a5a99,
-                                -11px -11px 22px #ffffff;
                             transform: scale(1.1);
                             transition: all .5s;
+                            box-shadow: 0px 1px 10px 0 rgba(0, 0, 0, .37);
                         }
                     }
 
                     &:hover>li:not(:hover) {
                         transform: scale(0.9, 0.9);
+                        box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, .37);
                     }
                 }
             }
