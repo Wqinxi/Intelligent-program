@@ -44,7 +44,7 @@
                     <!--          把下面那一块换成子组件，然后删掉了下面js的东西  -->
                     <div class="code-wrap">
                         <div class="code-area" id="blocklyDiv"></div>
-                        <div class="runcode" @click="runCode()">
+                        <div class="runcode" @click="runCode()" style="cursor:pointer">
                             运行代码
                         </div>
                     </div>
@@ -579,7 +579,7 @@ function runCode() {
     .head-wrap {
         height: 5vh;
         width: 100%;
-        background-color: rgb(103, 104, 104);
+        background-color: hsl(94, 48%, 45%);
         position: relative;
 
         .head {
@@ -768,7 +768,7 @@ function runCode() {
                             justify-content: space-between;
 
                             &:hover {
-                                background-color: #8d8a8a;
+                                background-color: #8bb876;
                                 color: #fff;
                                 transition: all .5s;
                             }
@@ -826,10 +826,9 @@ function runCode() {
                         position: absolute;
                         bottom: 10px;
                         left: 0px;
-                        background-color: #ffffff;
+                        background-color: #f8a920;
+                        color:#fff;
                         border-radius: 15px;
-                        border: 1px solid #000;
-                        box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, .37);
                     }
                 }
             }

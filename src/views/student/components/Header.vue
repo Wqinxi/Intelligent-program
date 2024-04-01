@@ -8,7 +8,7 @@
                     <path
                         d="M19 19C19 19.5523 18.5523 20 18 20H4C3.44772 20 3 19.5523 3 19V10H0L10.3273 0.611503C10.7087 0.264753 11.2913 0.264753 11.6727 0.611503L22 10H19V19Z" />
                 </svg>
-                <p>回到主界面</p>
+                <p class="back-home">回到主界面</p>
             </div>
             <div class="change">
                 <div class="back" @click="goBack">
@@ -29,7 +29,7 @@
         </div>
         <div class="wrap">
             <div class="img"><img :src="headImg" alt=""></div>
-            <div class="save">保存进度</div>
+            <div class="save" style="cursor:pointer">保存进度</div>
             <div class="login" @click="goLogin">登录</div>
         </div>
     </div>
@@ -63,13 +63,13 @@ function goLogin() {
     z-index: 999;
     height: 7vh;
     width: 100%;
-    background-color: #283138;
+    background-color: #ffffff;
     position: relative;
     display: flex;
     align-items: center;
     box-shadow: 0px 2px 50px #ffffff5d;
     border-bottom: 1px solid #d9d9d990;
-    color: #b6b9bb;
+    color:#5da365;
     white-space: nowrap;
     font-weight: 550;
 
@@ -86,6 +86,7 @@ function goLogin() {
             height: 90%;
             margin: 0px 3vh;
             margin-top: 1%;
+            margin-left:-1%;
             white-space: nowrap;
             display: flex;
             align-items: center;
@@ -93,11 +94,11 @@ function goLogin() {
             width: 18vh;
             font-weight: 900;
             font-size: 25px;
-            color: #f7f7f7;
+            color:  #2d5331;
         }
 
         .home {
-            margin-left: 10px;
+            margin-left: 15%;
             margin-top: 1%;
             height: 90%;
             width: 18vh;
@@ -109,16 +110,16 @@ function goLogin() {
 
             svg {
                 path {
-                    fill: #b6b9bb;
+                    fill: #6cb975;
                 }
             }
 
             &:hover {
-                color: #f7f7f7;
+                color: #6cb975;
 
                 svg {
                     path {
-                        fill: #f7f7f7;
+                        fill:  #6cb975;
                     }
                 }
             }
@@ -141,12 +142,14 @@ function goLogin() {
             &>:hover {
                 svg {
                     path {
-                        fill: #f7f7f7;
+                        fill: #c4c4c4;
                     }
                 }
             }
 
             .back {
+                margin-left:30%;
+                margin-right:30%;
                 cursor: pointer;
                 height: 24px;
                 width: 24px;
@@ -186,7 +189,7 @@ function goLogin() {
             text-align: center;
 
             &:hover {
-                color: #f7f7f7;
+                color: #6cb975;
             }
         }
 
@@ -197,7 +200,7 @@ function goLogin() {
             cursor: pointer;
 
             &:hover {
-                color: #f7f7f7;
+                color: #6cb975;
             }
         }
     }

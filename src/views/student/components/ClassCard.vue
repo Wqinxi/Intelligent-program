@@ -37,7 +37,7 @@ defineProps(['task', 'detail']);
         background-color: #d9d9d9;
     }
 
-    color:#9d9e9e;
+    color:#000000;
     height: 200px;
     width: 170px;
     position: relative;
@@ -47,7 +47,7 @@ defineProps(['task', 'detail']);
         height: 170px;
         width: 100%;
         position: relative;
-        border-bottom: 1px solid #5d59598d;
+        border-bottom: 1px solid #ace9bd8d;
         overflow: hidden;
 
         .top {
@@ -123,7 +123,7 @@ defineProps(['task', 'detail']);
         bottom: 0px;
 
         .progress {
-            background-color: #5d5959;
+            background-color: rgb(255, 255, 255);
             width: 100%;
             height: 100%;
         }

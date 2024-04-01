@@ -26,9 +26,6 @@ function toTheclass(task: number) {
 <template>
     <div class="body-wrap">
         <div class="body">
-            <div class="logo">
-                <img :src="loge" alt="">
-            </div>
             <div class="content">
                 <div class="content-wrap">
                     <ul>
@@ -43,7 +40,7 @@ function toTheclass(task: number) {
 </template>
 <style scoped lang="less">
 .body-wrap {
-    background-color: #ecf9f8;
+    background-color: #e5ece0;
     position: relative;
     height: 100vh;
 
@@ -53,23 +50,11 @@ function toTheclass(task: number) {
         height: 100%;
         width: 100%;
 
-        .logo {
-            position: absolute;
-            top: 8.6vh;
-            height: 20vh;
-            width: 60vh;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #4d4d4d;
-
-            img {
-                width: 100%;
-            }
-        }
-
         .content {
+            margin-top:-16%;
+            margin-left:10%;
             position: relative;
-            width: 100%;
+            width: 80%;
             top: 322px;
             height: auto;
             display: flex;
@@ -93,7 +78,7 @@ function toTheclass(task: number) {
                     li {
                         height: 200px;
                         width: 170px;
-                        margin-left: 10.5vh;
+                        margin-left: 13vh;
                         margin-bottom: 88px;
                         cursor: pointer;
                         transition: all .5s;

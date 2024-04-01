@@ -40,21 +40,21 @@
   height: 35px;
   font-size: 16px;
   color: black;
-  background-color: rgb(197, 197, 197);
+  background-color:rgb(164, 198, 155);
 }
 .title{
     margin-bottom: 3%;
     margin-right: 10px;
     cursor: pointer;
     margin-bottom: 3px;
-    color:rgb(110, 110, 110);
+    color: #183d1c;
 }
 .line{
     margin-left:3%;
     width:85%;
     height:1%;
     color:black;
-    border-top: 2px solid rgba(177, 177, 177, 0.639)}
+    border-top: 2px solid rgb(164, 198, 155)}
 .text{
     margin-bottom: 3%;
 }
@@ -66,7 +66,7 @@
 .block {
   width: 270px;
   height: 180px;
-  background-color: rgb(194, 194, 194);
+  background-color:rgb(164, 198, 155);
   margin-right: 130px;
 }
 </style>

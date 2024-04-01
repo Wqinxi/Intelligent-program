@@ -148,9 +148,9 @@ const pageList = computed(() => {
   padding: 5px;
   border: none;
   border-radius: 5px;
-  color: #b7b7b7;
+  color: #000000;
   margin-left: 1%;
-  background-color: #ececec;
+  background-color: #f0f5ec;
 }
 
 .search-button {
@@ -158,10 +158,11 @@ const pageList = computed(() => {
   margin-left: 2%;
   width: 8%;
   height: 60%;
-  background-color: #b7b7b7;
-  color: #ffffff;
+  background-color: #eaeaea;
+  color: #000000;
+  font-size:15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
 }
 

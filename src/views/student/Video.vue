@@ -125,7 +125,7 @@ function toChineseNum(number: any) {
     .header {
         height: 8vh;
         width: 100%;
-        background-color: hsl(0, 3%, 29%);
+        background-color: hsl(94, 48%, 45%);
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -149,7 +149,7 @@ function toChineseNum(number: any) {
 so that it is smooth among other more minor things */
             display: block;
             cursor: pointer;
-            color: white;
+            color: rgb(255, 255, 255);
             position: relative;
             font-weight: 600;
             border-radius: 6px;
@@ -215,7 +215,7 @@ so that it is smooth among other more minor things */
                 object-fit: cover !important;
                 margin: 0px;
                 padding: 0px;
-                background-color: burlywood;
+                background-color: rgb(245, 245, 245);
             }
         }
 
@@ -233,7 +233,7 @@ so that it is smooth among other more minor things */
                 .detail-img {
                     height: 16.5vh;
                     width: 16.5vh;
-                    background-color: #d9d9d9;
+                    background-color: #effde5;
 
                     img {
                         height: 100%;
@@ -245,6 +245,7 @@ so that it is smooth among other more minor things */
                     height: 16.5vh;
                     width: 262px;
                     padding: 5px;
+                    background-color: #ecf4e7;
 
                     p {
                         height: 13.5vh;
@@ -273,7 +274,7 @@ so that it is smooth among other more minor things */
 
                 .list-header {
                     height: 10vh;
-                    border-bottom: 2px solid #999;
+                    border-bottom: 2px solid #8eca45;
 
                     h3 {
                         line-height: 10vh;
@@ -294,14 +295,14 @@ so that it is smooth among other more minor things */
 
                         li {
                             height: 10vh;
-                            border-bottom: 2px solid #9999995a;
+                            border-bottom: 2px solid#e1f1ce;
                             font-size: 16px;
                             padding: 5px 15px;
                             cursor: pointer;
                             transition: all .5s .1s;
 
                             &:hover {
-                                background-color: #999;
+                                background-color: #62b63b;
                                 color: #fff;
                                 transition: all .5s;
                             }

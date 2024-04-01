@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView} from "vue-router";
 import {useRoute} from "vue-router";
+import Header from "@/views/student/components/Header.vue"
 
 const route = useRoute()
 
@@ -8,12 +9,14 @@ const route = useRoute()
 
 <template>
 <el-container>
-
+  <div class="header">
+    <Header />
+  </div>
   <el-header class="top-bar"></el-header>
   <el-container class="page-container">
     <el-aside class="aside">
       <div class="avatar">
-        <img src="@/assets/img/teacher.jpg">
+        
       </div>
       <div class="name">
           李老师
@@ -49,7 +52,7 @@ const route = useRoute()
   left: 0;
   width: 100%;
   height: 95%;
-  background-color: #e6e6e6e0;
+  background-color: #f1f8ec;
 }
 .top-bar {
   background-color: #ffffff;
@@ -65,6 +68,7 @@ const route = useRoute()
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
+  background-color: rgb(164, 198, 155);
 }
 
 .avatar img {
@@ -84,7 +88,7 @@ const route = useRoute()
   display: inline-block;
   width: 120px;
   height: 35px;
-  background-color: rgb(186, 186, 186);
+  background-color:  rgb(164, 198, 155);
   color: white;
   border: none;
   border-radius: 5px;

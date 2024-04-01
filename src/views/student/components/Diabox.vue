@@ -79,7 +79,7 @@ function sendMessageByEnter() {
 
 .message-container {
   height: 87%;
-  background-color: #dfefff;
+  background-color: #eefae7;
   width: 100%;
   position: absolute;
   top: 0;
@@ -145,10 +145,10 @@ function sendMessageByEnter() {
 
   .send-button {
     padding: 5px 10px;
-    background-color: #a2c2e4;
+    background-color: #e2e2e1;
     color: rgb(0, 0, 0);
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     display: flex;
     margin-top: 4vh;
@@ -156,10 +156,10 @@ function sendMessageByEnter() {
 
   .return-button {
     padding: 5px 10px;
-    background-color: #ffde90;
+    background-color: #e2e2e1;
     color: rgb(0, 0, 0);
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     margin-right: 5px;
     margin-top: 4vh;

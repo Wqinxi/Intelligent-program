@@ -26,7 +26,7 @@ const confirm = () => {
 
         <div
           :class="message.sender === 'me' ? 'message-me-asWhole-headPortrait' : 'message-other-asWhole-headPortrait'">
-          <img src="@/assets/img/examineeFace.jpg" class="examineeFace_logo_style">
+          <img src="@/assets/img/me.jpg" class="examineeFace_logo_style">
         </div>
         <div :class="message.sender === 'me' ? 'message-me-asWhole-right' : 'message-other-asWhole-right'">
           <div :class="message.sender === 'me' ? 'message-me-asWhole-top' : 'message-other-asWhole-top'">
@@ -41,7 +41,7 @@ const confirm = () => {
     <div class="popup-container" v-if="showbox">
       <DiaboxVue @close="confirm" />
     </div>
-    <el-button @click="openbox">打开聊天框</el-button>
+    <el-button @click="openbox" class="open-dialog">查看历史聊天记录</el-button>
   </div>
 </template>
 
@@ -50,13 +50,22 @@ const confirm = () => {
   position: relative;
   width: 100%;
   height: 30vh;
+
+  .open-dialog{
+    background-color:#efefef;
+    color:rgb(0, 0, 0);
+    border-radius:20px;
+    margin-bottom: 0.8%;
+    margin-right:1%;
+    height:15%;
+  }
 }
 
 .message-container {
   height: 100%;
   width: 100%;
   overflow-y: auto;
-  background-color: #d2d2d2;
+  background-color: #e3eadb;
 }
 
 .popup-container {
