@@ -40,7 +40,7 @@ function toTheclass(task: number) {
 </template>
 <style scoped lang="less">
 .body-wrap {
-    background-color: #e5ece0;
+    background-color:rgb(241, 244, 239) ;
     position: relative;
     height: 100vh;
 

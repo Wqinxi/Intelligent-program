@@ -6,21 +6,16 @@ const router = createRouter({
   routes: [  // 一级路由
     {
       path: '/',
-      redirect: '/auth/login',
+      redirect: '/auth/studentLogIn',
       component: () => import('@/views/auth/Index.vue'),
       children: []
     },
     {
       path: '/auth',
-      redirect: '/auth/login',
+      redirect: '/auth/studentLogIn',
       component: () => import('@/views/auth/Index.vue'),
       children: [ // 二级路由
         {
-          path: 'login',
-          component: () => import('@/views/auth/LoginPage.vue')
-
-        }
-        , {
           path: 'studentLogIn',
           component: () => import('@/views/auth/studentLogIn.vue')
         }, {

@@ -1,17 +1,20 @@
 <template>
     <div class="wrap">
+        <div class="log-buttons">
+            <el-button class="log-button" @click="studentlogin">学生登录</el-button>
+            <el-button class="log-button" @click="teacherlogin">教师登录</el-button>
+        </div>
         <div class="content">
             <div class="item">
-                <p>用户名：</p>
-                <input type="text" name="userName" v-model="userName">
+                <div class="label">用户名：</div>
+                <input class="put" type="text" name="userName" v-model="userName">
             </div>
             <div class="item">
-                <p>密码：</p>
-                <input type="password" name="password" id="" v-model="password">
+                <div class="label">密码：</div>
+                <input class="put" type="password" name="password" id="" v-model="password">
             </div>
             <div class="button">
                 <button @click="login"> 登录</button>
-                <button @click="register">注册</button>
             </div>
         </div>
     </div>
@@ -26,6 +29,12 @@ let useUserData = useUserDataStore()// 有token,username,password
 const router = useRouter()
 let userName = ref('')
 let password = ref('')
+function studentlogin(){
+    router.push("/auth")
+}
+function teacherlogin(){
+    router.push("/auth/teacherLogIn")
+}
 function login() {
     // axios({
     //     url: "http://127.0.0.1:4523/m1/4023739-0-default/login",
@@ -64,9 +73,25 @@ function register() {
     justify-content: center;
     align-items: center;
 
+    .log-buttons{
+        margin-bottom:90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; 
+
+        .log-button{
+            margin:10px;
+            background-color: #ffffff;
+            border-color: #ffffff;
+            color:#5c9043; 
+            font-size: 16px;
+        }
+    }
+
     .content {
-        height: 50%;
+        height: 70%;
         width: 50%;
+        margin-left:-60%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -74,16 +99,24 @@ function register() {
 
         .item {
             display: flex;
-            flex-direction: row;
-            height: 25px;
+            flex-direction: column; 
+            margin-top: -10%;
+            margin-bottom: -50%;;
 
-            input {
-                background-color: transparent;
-                height: 25px;
-                width: 300px;
+            .label{
+                display:block;
+                margin-bottom: 5px;
+                color:#c1c1c1;
+                font-size:14px;
+            }
+
+            input{
+                box-shadow: 0 0 0 30px rgb(241, 244, 239) inset !important;
+                background-color: rgb(241, 244, 239);
+                height: 30px;
+                width: 230px;
                 outline: none;
                 border: none;
-                border-bottom: 1px solid #000;
             }
 
             p {
@@ -94,21 +127,23 @@ function register() {
         }
 
         .button {
-            width: 100%;
-            height: 25px;
+            width: 230px;
+            height: 33px;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
 
             button {
                 height: 100%;
-                width: 100px;
+                width: 100%;
                 line-height: 25px;
                 border: none;
-                background: #ffffff;
+                background:#5c9043;
+                color:#ffffff;
+                font-size:16px;
 
                 &:hover {
-                    border: 1px solid #000;
+                    border: 1px solid #20461d;
                 }
             }
         }

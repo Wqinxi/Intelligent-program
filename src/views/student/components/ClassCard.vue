@@ -47,7 +47,7 @@ defineProps(['task', 'detail']);
         height: 170px;
         width: 100%;
         position: relative;
-        border-bottom: 1px solid #ace9bd8d;
+        border-bottom: 1px solid #c7ffd78d;
         overflow: hidden;
 
         .top {
