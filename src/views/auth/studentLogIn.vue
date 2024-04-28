@@ -35,19 +35,19 @@ function studentlogin(){
 function teacherlogin(){
     router.push("/auth/teacherLogIn")
 }
+
 function login() {
-    // axios({
-    //     url: "http://127.0.0.1:4523/m1/4023739-0-default/login",
-    //     method: 'post',
-    //     params: {
-    //         password,
-    //         userName
-    //     }
-    // }).then(res => {
-    //     let newToken = res.data.token
-    //     changeToken(newToken)
-    // })
-    router.push("/student")
+    let pwd = password.value
+    let uname = userName.value
+    axios.post("http://127.0.0.1:8080/user/login", {
+        username: uname,
+        password: pwd
+    }).then(res => {
+        let token = res.data.data.token
+        console.log(token)
+        localStorage.setItem('token', token)
+        router.push("/student")
+    })
 }
 function register() {
     // 发送请求 
