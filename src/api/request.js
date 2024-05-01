@@ -4,18 +4,19 @@ import axios from 'axios'
 
 //上传评论
 export default function () {
+    const REQUEST_URL = 'http://127.0.0.1:4523/m1/4427398-0-default'
     async function addComment(token, task, newmessage) {
         let config = {
             method: 'post',
-            url: 'http://127.0.0.1:4523/m1/4023739-0-default/api/messages/get',
+            url: REQUEST_URL + '/get',
             data: {
                 token,
                 newmessage,
                 task
             },
-            //headers: {
-                //'User-Agent': 'Apifox/1.0.0 (https://apifox.com)'
-            //}
+            headers: {
+                'User-Agent': 'Apifox/1.0.0 (https://apifox.com)'
+            }
         };
         await axios(config)
             .then(function (response) {
@@ -29,5 +30,5 @@ export default function () {
 
     }
 
-    return { addComment }
+    return { addComment, REQUEST_URL }
 }

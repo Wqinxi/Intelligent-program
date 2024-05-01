@@ -24,6 +24,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { useUserDataStore } from '@/stores/userData';
+import API from '@/api/request.js'
 let useUserData = useUserDataStore()// 有token,username,password
 
 const router = useRouter()
@@ -36,10 +37,11 @@ function teacherlogin(){
     router.push("/auth/teacherLogIn")
 }
 
+const {REQUEST_URL} = API() 
 function login() {
     let pwd = password.value
     let uname = userName.value
-    axios.post("http://127.0.0.1:8080/user/login", {
+    axios.post(REQUEST_URL + "/user/login", {
         username: uname,
         password: pwd
     }).then(res => {
