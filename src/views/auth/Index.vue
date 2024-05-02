@@ -5,7 +5,7 @@ import { RouterView } from "vue-router";
 
 <template>
   <div class="whole-page">
-    <img src="@/assets/img/welcomepic.png">
+    <img class="image" src="@/assets/img/welcomepic.png">
     <el-container direction="horizontal" class="login-container">
       <RouterView v-slot="{ Component }">
         <keep-alive>
@@ -22,6 +22,14 @@ import { RouterView } from "vue-router";
   height: 100%;
   width: 100%;
   background-color: rgb(255, 255, 255);
+  .image {
+  position: absolute; 
+  left: 0;
+  top: 0; 
+  height: 100%;
+  width: 50%; 
+  object-fit: cover;
+}
   .login-container {
     width: 25%;
     height: 65%;
