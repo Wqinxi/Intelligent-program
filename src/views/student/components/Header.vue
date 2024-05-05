@@ -165,7 +165,7 @@ function goLogin() {
 
     .wrap {
         height: 5.5vh;
-        width: 30vh;
+        width: 20vh;
         position: absolute;
         right: 8vh;
         display: flex;
@@ -180,15 +180,6 @@ function goLogin() {
             img {
                 height: 100%;
                 width: 100%;
-            }
-        }
-
-        .save {
-            line-height: 5.5vh;
-            text-align: center;
-
-            &:hover {
-                color: #6cb975;
             }
         }
 
