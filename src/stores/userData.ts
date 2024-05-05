@@ -41,7 +41,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -70,7 +70,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -103,7 +103,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -169,7 +169,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -198,7 +198,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -231,7 +231,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -297,7 +297,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -326,7 +326,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -359,7 +359,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -425,7 +425,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -454,7 +454,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -487,7 +487,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -553,7 +553,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -582,7 +582,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -615,7 +615,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -681,7 +681,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -710,7 +710,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -743,7 +743,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -809,7 +809,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -838,7 +838,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -871,7 +871,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -937,7 +937,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -966,7 +966,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -999,7 +999,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -1065,7 +1065,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     {  // 第一个任务
                         id: 1,
                         isOver: false,
-                        mapSrc: "/src/views/student/blockData/img/maze1-1.png",  // 地图
+                        mapSrc: "/public/img/maze1-1.png",  // 地图
                         status: "",
                         blocks: [ //需要的模块
                             'forward',
@@ -1094,7 +1094,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 2,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-2.png",
+                        mapSrc: "/public/img/maze1-2.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
@@ -1127,7 +1127,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         id: 3,
                         isOver: false,
                         status: "",
-                        mapSrc: "/src/views/student/blockData/img/maze1-3.png",
+                        mapSrc: "/public/img/maze1-3.png",
                         max_blocks: 10,
                         blocks: [
                             'forward',
