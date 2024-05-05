@@ -251,6 +251,7 @@ let codeContent = ref();
 let personimg = ref();//人物图像
 
 function load_level(level: any, currenttask: number) {
+
     let toolbox: any = {
         "kind": "flyoutToolbox",
         "contents": []
@@ -295,7 +296,14 @@ function load_level(level: any, currenttask: number) {
         let codeData = JSON.parse(localStorage.getItem(`codeSave[${currentTasklocal}][${currenttask}]`) as string) || level.status
         Blockly.serialization.workspaces.load(codeData, current_game.workspace);
     }
-
+    let path = '';
+    for (let i = 0; i < level.game.path.length; i++) {
+        path += `[${level.game.path[i][0]},${level.game.path[i][1]}]`
+        path += (i == level.game.path.length - 1 ? '' : ',');
+    }
+    mitter.emit('sendMap', path);
+    mitter.emit('sendEnd', `[${level.game.goal.x},${level.game.goal.y}]`)
+    mitter.emit('sendStart', `[${level.game.player.x},${level.game.player.y}]`)
     function updateCodeThro(timeGap: number) {
         let pre = 0
         let isDo = false
@@ -306,6 +314,7 @@ function load_level(level: any, currenttask: number) {
                 // 修改数据，发送请求，本地保存
                 const code = javascriptGenerator.workspaceToCode(current_game.workspace);
                 console.log(code)
+                mitter.emit('sendCode', code);
                 // 保存code
                 let codeData = Blockly.serialization.workspaces.save(current_game.workspace);
                 localStorage.setItem(`codeSave[${currentTasklocal}][${currenttask}]`, JSON.stringify(codeData))//保存
@@ -827,7 +836,7 @@ function runCode() {
                         bottom: 10px;
                         left: 0px;
                         background-color: #f8a920;
-                        color:#fff;
+                        color: #fff;
                         border-radius: 15px;
                     }
                 }

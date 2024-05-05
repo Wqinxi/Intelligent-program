@@ -6,7 +6,7 @@ import apiComment from '@/api/request.js';
 import { useMessageStore } from '@/stores/message';
 let useMessage = useMessageStore()
 let messages = useMessage.messages
-const showbox = ref(false)
+let showbox = ref(false)
 function openbox() {
   showbox.value = true;
 }
@@ -51,13 +51,13 @@ const confirm = () => {
   width: 100%;
   height: 30vh;
 
-  .open-dialog{
-    background-color:#efefef;
-    color:rgb(0, 0, 0);
-    border-radius:20px;
+  .open-dialog {
+    background-color: #efefef;
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
     margin-bottom: 0.8%;
-    margin-right:1%;
-    height:15%;
+    margin-right: 1%;
+    height: 15%;
   }
 }
 

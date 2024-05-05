@@ -2,6 +2,8 @@
 import { defineEmits } from 'vue';
 import { ref } from 'vue';
 import { nextTick } from 'vue'
+import axios from 'axios';
+import mitter from '@/utils/emitter';
 import { useMessageStore } from '@/stores/message';
 import API from '@/api/request.js';
 let useMessage = useMessageStore()
@@ -10,26 +12,59 @@ let { addComment } = API()
 const closebox = defineEmits(['close']);
 const message = ref('');
 const messageContainer = ref();
+let codMsg = '';
+let mapMsg = '';
+let startpoint = '';
+let endpoint = '';
+mitter.on('sendCode', (res: any) => {
+  console.log('sendCode', res)
+  codMsg = res;
+})
+mitter.on('sendMap', (res: any) => {
+  console.log('sendMap', res)
+
+  mapMsg = res;
+})
+mitter.on('sendEnd', (res: any) => {
+  console.log('sendEnd', res)
+
+  endpoint = res;
+})
+mitter.on('sendStart', (res: any) => {
+  console.log('sendStart', res)
+
+  startpoint = res;
+})
 function sendMessage() {
   if (message.value.trim() !== '') {
     messages.push({ sender: 'me', content: message.value, userName: "我" });
     console.log(messages)
     // 上传评论
-    // addComment(token,task,{ sender: 'me', content: message.value, userName: "我" })//
-    message.value = '';
-    // 滚动到最新消息
-    nextTick(() => {
-      messageContainer.value.scrollTop = messageContainer.value.scrollHeight;
-    });
-  }
-}
-function sendMessageByEnter() {
-  if (message.value.trim() !== '') {
-    messages.push({ sender: 'me', content: message.value, userName: "我" });
-    console.log(messages)
-    // 上传评论
-    // addComment(token,task,{ sender: 'me', content: message.value, userName: "我" })//
-
+    var data = {
+      name: "user",
+      block: "'向前走':'forward()','向左转':'turn left()','向右转':'turn right()','循环':'while_do(){}','没到达终点':'not_end()','如果,否则':'if_else'",
+      map: `[[x,y],${mapMsg}]`,
+      code: codMsg,
+      startpoint: startpoint,
+      endpoint: endpoint,
+      query: message.value,
+    }
+    var config = {
+      method: 'get',
+      url: 'http://121.37.47.29:8080/user/chat',
+      data: data
+    };
+    axios(config)
+      .then(function (res) {
+        // console.log(JSON.stringify(res.data));
+        console.log(mapMsg, codMsg, startpoint, endpoint, message.value);
+        console.log(res)
+        messages.push({ sender: 'other', content: res, userName: "木木老师" });
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.log(mapMsg, codMsg, startpoint, endpoint, message.value);
+      });
 
     message.value = '';
     // 滚动到最新消息
@@ -54,7 +89,7 @@ function sendMessageByEnter() {
     </div>
 
     <div class="input-wrapper">
-      <input type="text" v-model="message" class="input-field" placeholder="请输入消息" @keyup.enter="sendMessageByEnter">
+      <input type="text" v-model="message" class="input-field" placeholder="请输入消息">
       <button @click.native="closebox('close')" class="return-button">返回课程页面</button>
       <button @click="sendMessage" class="send-button">发送</button>
     </div>
