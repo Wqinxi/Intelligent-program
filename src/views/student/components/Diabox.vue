@@ -50,8 +50,11 @@ function sendMessage() {
       query: message.value,
     }
     var config = {
-      method: 'get',
+      method: 'post',
       url: 'http://121.37.47.29:8080/user/chat',
+      headers: {
+        'token': localStorage.getItem('token')
+      },
       data: data
     };
     axios(config)
@@ -59,7 +62,8 @@ function sendMessage() {
         // console.log(JSON.stringify(res.data));
         console.log(mapMsg, codMsg, startpoint, endpoint, message.value);
         console.log(res)
-        messages.push({ sender: 'other', content: res, userName: "木木老师" });
+        let response = JSON.parse(res.data.data)
+        messages.push({ sender: 'other', content: response.content, userName: "木木老师" });
       })
       .catch(function (error) {
         console.log(error);

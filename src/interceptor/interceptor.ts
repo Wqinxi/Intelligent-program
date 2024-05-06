@@ -21,7 +21,7 @@ axios.interceptors.response.use(
         if (error.response) {
             if (error.response.status === 401) {
                 localStorage.removeItem('token')
-                router.replace('/auth')
+                router.replace('/auth/studentLogin')
             }
         }
     }

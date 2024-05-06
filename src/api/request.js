@@ -4,7 +4,7 @@ import axios from 'axios'
 
 //上传评论
 export default function () {
-    const REQUEST_URL = 'http://127.0.0.1:4523/m1/4427398-0-default'
+    const REQUEST_URL = 'http://121.37.47.29:8080'
     async function addComment(token, task, newmessage) {
         let config = {
             method: 'post',
@@ -13,9 +13,6 @@ export default function () {
                 token,
                 newmessage,
                 task
-            },
-            headers: {
-                'User-Agent': 'Apifox/1.0.0 (https://apifox.com)'
             }
         };
         await axios(config)
