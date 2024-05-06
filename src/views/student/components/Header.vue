@@ -29,7 +29,6 @@
         </div>
         <div class="wrap">
             <div class="img"><img :src="headImg" alt=""></div>
-            <div class="save" style="cursor:pointer">保存进度</div>
             <div class="login" @click="goLogin">登录</div>
         </div>
     </div>
@@ -69,7 +68,7 @@ function goLogin() {
     align-items: center;
     box-shadow: 0px 2px 50px #ffffff5d;
     border-bottom: 1px solid #d9d9d990;
-    color:#5da365;
+    color: #5da365;
     white-space: nowrap;
     font-weight: 550;
 
@@ -86,7 +85,7 @@ function goLogin() {
             height: 90%;
             margin: 0px 3vh;
             margin-top: 1%;
-            margin-left:-1%;
+            margin-left: -1%;
             white-space: nowrap;
             display: flex;
             align-items: center;
@@ -94,7 +93,7 @@ function goLogin() {
             width: 18vh;
             font-weight: 900;
             font-size: 25px;
-            color:  #2d5331;
+            color: #2d5331;
         }
 
         .home {
@@ -119,7 +118,7 @@ function goLogin() {
 
                 svg {
                     path {
-                        fill:  #6cb975;
+                        fill: #6cb975;
                     }
                 }
             }
@@ -148,8 +147,8 @@ function goLogin() {
             }
 
             .back {
-                margin-left:30%;
-                margin-right:30%;
+                margin-left: 30%;
+                margin-right: 30%;
                 cursor: pointer;
                 height: 24px;
                 width: 24px;
@@ -166,7 +165,7 @@ function goLogin() {
 
     .wrap {
         height: 5.5vh;
-        width: 30vh;
+        width: 20vh;
         position: absolute;
         right: 8vh;
         display: flex;
@@ -181,15 +180,6 @@ function goLogin() {
             img {
                 height: 100%;
                 width: 100%;
-            }
-        }
-
-        .save {
-            line-height: 5.5vh;
-            text-align: center;
-
-            &:hover {
-                color: #6cb975;
             }
         }
 

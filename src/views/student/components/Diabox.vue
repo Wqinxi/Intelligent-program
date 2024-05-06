@@ -83,11 +83,9 @@ function sendMessage() {
   <div class="message-box">
     <div class="message-container" ref="messageContainer">
       <div v-for="msg in messages" class="message-item">
-        <div class="message-wrap">
-          <div :class="msg.sender == 'me' ? 'send-me' : 'send-other'">
-            {{ msg.content }}
-            <img src="@/assets/img/me.jpg" class="avatar">
-          </div>
+        <div :class="msg.sender == 'me' ? 'send-me' : 'send-other'">
+          <div class="content">{{ msg.content }}</div>
+          <img src="@/assets/img/me.jpg" class="avatar">
         </div>
       </div>
     </div>
@@ -114,6 +112,7 @@ function sendMessage() {
   position: relative;
   /* 添加定位属性 */
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .message-container {
@@ -124,6 +123,7 @@ function sendMessage() {
   top: 0;
   left: 0;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .avatar {
@@ -138,31 +138,41 @@ function sendMessage() {
   margin-top: 2%;
   position: relative;
   width: 100%;
-  height: 10%;
+  box-sizing: border-box;
+
+  .content {
+    background-color: rgb(212, 212, 212);
+    max-width: 280px;
+    word-wrap: break-word;
+    /* 处理英文单词换行 */
+    word-break: break-all;
+    /* 处理中文换行 */
+    display: inline-block;
+    /*将div元素转换为行内块元素*/
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
 
   .send-me {
-    width: 50%;
+    width: 100%;
     height: 100%;
     display: flex;
-    position: absolute;
     right: 0px;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    margin: 0px 20px;
   }
 
   .send-other {
     width: 50%;
     height: 100%;
     display: flex;
-    position: absolute;
     left: 0px;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: flex-end;
-    margin: 0px 20px;
   }
+
 }
 
 .input-wrapper {
