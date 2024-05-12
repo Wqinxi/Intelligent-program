@@ -52,17 +52,17 @@ function sendMessage() {
     var config = {
       method: 'post',
       url: 'http://121.37.47.29:8080/user/chat',
+      data: data,
       headers: {
         'token': localStorage.getItem('token')
       },
-      data: data
     };
     axios(config)
       .then(function (res) {
         // console.log(JSON.stringify(res.data));
         console.log(mapMsg, codMsg, startpoint, endpoint, message.value);
-        console.log(res)
         let response = JSON.parse(res.data.data)
+        console.log(response)
         messages.push({ sender: 'other', content: response.content, userName: "木木老师" });
       })
       .catch(function (error) {
@@ -151,6 +151,7 @@ function sendMessage() {
     /*将div元素转换为行内块元素*/
     padding: 6px 12px;
     border-radius: 4px;
+    text-align: justify;
   }
 
   .send-me {

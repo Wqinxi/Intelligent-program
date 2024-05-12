@@ -13,7 +13,7 @@ export default function () {
                 token,
                 newmessage,
                 task
-            }
+            },
         };
         await axios(config)
             .then(function (response) {
@@ -24,8 +24,6 @@ export default function () {
             .catch(function (error) {
                 console.log(error);
             });
-
     }
-
     return { addComment, REQUEST_URL }
 }
