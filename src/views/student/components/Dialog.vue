@@ -38,7 +38,7 @@ const confirm = () => {
         </div>
       </div>
     </div>
-    <div class="popup-container" v-if="showbox">
+    <div class="popup-container" v-show="showbox">
       <DiaboxVue @close="confirm" />
     </div>
     <el-button @click="openbox" class="open-dialog">查看历史聊天记录</el-button>

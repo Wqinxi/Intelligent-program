@@ -301,6 +301,9 @@ function load_level(level: any, currenttask: number) {
         path += `[${level.game.path[i][0]},${level.game.path[i][1]}]`
         path += (i == level.game.path.length - 1 ? '' : ',');
     }
+    const code = javascriptGenerator.workspaceToCode(current_game.workspace);
+    mitter.emit('test')
+    mitter.emit('sendCode', code);
     mitter.emit('sendMap', path);
     mitter.emit('sendEnd', `[${level.game.goal.x},${level.game.goal.y}]`)
     mitter.emit('sendStart', `[${level.game.player.x},${level.game.player.y}]`)
@@ -313,21 +316,19 @@ function load_level(level: any, currenttask: number) {
                 pre = current
                 // 修改数据，发送请求，本地保存
                 const code = javascriptGenerator.workspaceToCode(current_game.workspace);
-                console.log(code)
                 mitter.emit('sendCode', code);
                 // 保存code
                 let codeData = Blockly.serialization.workspaces.save(current_game.workspace);
                 localStorage.setItem(`codeSave[${currentTasklocal}][${currenttask}]`, JSON.stringify(codeData))//保存
                 level.status = codeData;
-                console.log(levels)
             }
         }
     }
-
     let updateCode = updateCodeThro(2000)
     current_game.workspace.addChangeListener(updateCode);
     // 初始化 勾选
     isover.value[currentTask.value].style.opacity = (levels[currentTask.value].isOver ? 1 : 0)
+    console.log("当前的游戏数据", levels)
 }
 onMounted(() => {
     load_level(levels[currentTask.value], currentTask.value);

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineEmits } from 'vue';
-import { ref } from 'vue';
+import { ref, onUnmounted } from 'vue';
 import { nextTick } from 'vue'
 import axios from 'axios';
 import mitter from '@/utils/emitter';
@@ -9,17 +9,22 @@ import API from '@/api/request.js';
 let useMessage = useMessageStore()
 let messages = useMessage.messages
 let { addComment } = API()
-const closebox = defineEmits(['close']);
-const message = ref('');
-const messageContainer = ref();
+let closebox = defineEmits(['close']);
+let message = ref();
+let messageContainer = ref();
 let codMsg = '';
 let mapMsg = '';
 let startpoint = '';
 let endpoint = '';
+
+onUnmounted(() => {
+  mitter.off
+})
 mitter.on('sendCode', (res: any) => {
   console.log('sendCode', res)
   codMsg = res;
 })
+
 mitter.on('sendMap', (res: any) => {
   console.log('sendMap', res)
 
@@ -34,13 +39,10 @@ mitter.on('sendStart', (res: any) => {
   console.log('sendStart', res)
 
   startpoint = res;
+  console.log("[][]",startpoint)
 })
 function sendMessage() {
-  if (message.value.trim() !== '') {
-    messages.push({ sender: 'me', content: message.value, userName: "我" });
-    console.log(messages)
-    // 上传评论
-    var data = {
+  let data = {
       name: "user",
       block: "'向前走':'forward()','向左转':'turn left()','向右转':'turn right()','循环':'while_do(){}','没到达终点':'not_end()','如果,否则':'if_else'",
       map: `[[x,y],${mapMsg}]`,
@@ -49,7 +51,7 @@ function sendMessage() {
       endpoint: endpoint,
       query: message.value,
     }
-    var config = {
+    let config = {
       method: 'post',
       url: 'http://121.37.47.29:8080/user/chat',
       data: data,
@@ -57,6 +59,12 @@ function sendMessage() {
         'token': localStorage.getItem('token')
       },
     };
+    console.log("发送的数据", config)
+  if (message.value.trim() !== '') {
+    messages.push({ sender: 'me', content: message.value, userName: "我" });
+    console.log(messages)
+    // 上传评论
+    
     axios(config)
       .then(function (res) {
         // console.log(JSON.stringify(res.data));
