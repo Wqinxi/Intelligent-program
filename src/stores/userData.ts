@@ -118,7 +118,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -130,7 +130,6 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
                         }
                     },
@@ -246,7 +245,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -258,7 +257,6 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
                         }
                     },
@@ -374,7 +372,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -386,7 +384,6 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
                         }
                     },
@@ -502,7 +499,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -514,8 +511,8 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
+
                         }
                     },
                 ]
@@ -630,7 +627,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -642,8 +639,8 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
+
                         }
                     },
                 ]
@@ -758,7 +755,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -770,7 +767,6 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
                         }
                     },
@@ -886,7 +882,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -898,8 +894,8 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
+
                         }
                     },
                 ]
@@ -1014,7 +1010,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -1026,8 +1022,8 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
+
                         }
                     },
                 ]
@@ -1142,7 +1138,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 y: 6
                             },
                             goal: {
-                                x: 8,
+                                x: 7,
                                 y: 4
                             },
                             path: [
@@ -1154,8 +1150,8 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                                 [5, 4],
                                 [6, 4],
                                 [7, 4],
-                                [8, 4]
                             ]
+
                         }
                     },
                 ]

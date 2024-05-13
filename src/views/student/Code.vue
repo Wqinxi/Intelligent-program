@@ -7,7 +7,7 @@
         <div class="wrap">
             <div class="wrap-left">
                 <div class="map-wrap">
-                    <img src="" alt="" ref="mazemap">
+                    <img :src="mapsrc" alt="">
                     <div class="person-wrap" ref="mazeman" id="man">
                         <div class="person">
                             <img src="@/assets/img/person.png" alt="" ref="personimg">
@@ -73,6 +73,19 @@ let userDataStore = storeToRefs(useUserDataStore())
 let currentTasklocal = Number(localStorage.getItem('currentTask')) || useCurrentTaskStore().currentTask
 let Data = userDataStore.userData.value.Data[currentTasklocal]
 let levels = Data.blockList
+let { game } = useGame()
+
+let {
+    player_direction_left,
+    player_direction_up,
+    player_direction_right,
+    player_direction_down,
+    player_direction_max,
+    player
+} = usePlayer()
+
+let currentTask = ref(0);
+
 mitter.on('send-data', (val: any) => {
     Data = val
     levels = Data.blockList
@@ -81,6 +94,16 @@ mitter.on('send-data', (val: any) => {
 
 const route = useRoute()
 ////////////////////////////////////////// code区
+onMounted(() => {
+    forward();
+    turn_left();
+    turn_right();
+    exist_path_ahead();
+    exist_path_left();
+    exist_path_right();
+    console.log("onMounted")
+    load_level(levels[currentTask.value], currentTask.value);
+});
 
 function toChineseNum(number: any) {
     const chineseNum = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
@@ -222,18 +245,6 @@ javascriptGenerator.forBlock['if_else'] = function (block: any, generator: any) 
 
 
 //////////////////
-let { game } = useGame()
-
-let {
-    player_direction_left,
-    player_direction_up,
-    player_direction_right,
-    player_direction_down,
-    player_direction_max,
-    player
-} = usePlayer()
-
-let currentTask = ref(0);
 
 function changeTask(idx: number) {
     currentTask.value = idx
@@ -244,14 +255,12 @@ function changeTask(idx: number) {
     load_level(levels[currentTask.value], currentTask.value);
 }
 let current_game = new game();
-let mazemap = ref()//地图
 let mazeman = ref();//人的位置
 let mazeend = ref();//终点
-let codeContent = ref();
 let personimg = ref();//人物图像
-
+let mapsrc = ref('../img/maze1-1.png');
 function load_level(level: any, currenttask: number) {
-
+    console.log("load_level\n", level, currenttask)
     let toolbox: any = {
         "kind": "flyoutToolbox",
         "contents": []
@@ -283,8 +292,7 @@ function load_level(level: any, currenttask: number) {
     current_game.goal = { x: level.game.goal.x, y: level.game.goal.y };
     current_game.path = level.game.path;
     current_game.delay = 0;
-    // console.log(mazemap.value.src, level.mapSrc)
-    mazemap.value.src = level.mapSrc
+    mapsrc.value = level.mapSrc
     // personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
     personimg.value.style.translate = -49 * 4 * current_game.init_direction + "px";
     mazeman.value.style.left = 10 * current_game.init_position.x + "%";
@@ -330,18 +338,8 @@ function load_level(level: any, currenttask: number) {
     isover.value[currentTask.value].style.opacity = (levels[currentTask.value].isOver ? 1 : 0)
     console.log("当前的游戏数据", levels)
 }
-onMounted(() => {
-    load_level(levels[currentTask.value], currentTask.value);
-});
 
 
-// // function onchange(event) {
-// //     document.getElementById("blockSum").textContent = current_game.workspace.getAllBlocks(false).length;
-// //     document.getElementById('capacity').textContent = current_game.workspace.remainingCapacity();
-// // }
-
-// current_game.workspace.addChangeListener(onchange);
-// onchange();
 
 function is_movable(new_position: any) {
     return current_game.path.find((element: any) => element[0] == new_position.x && element[1] == new_position.y) != undefined
@@ -374,7 +372,7 @@ function move(x: any, y: any) {
 
 function change_dir(x: any) {
     if (x == 1) {
-        for (var i = 1; i <= 4; i++) {
+        for (var i = 1; i < 4; i++) {
             setTimeout(() => {
                 personimg.value.style.translate = ((toNumPx(personimg.value.style.translate) + 49) >= 0 ? -735 : (toNumPx(personimg.value.style.translate) + 49)) + "px";
             }, current_game.delay);
@@ -382,7 +380,7 @@ function change_dir(x: any) {
         }
     }
     else {
-        for (var i = 1; i <= 4; i++) {
+        for (var i = 1; i < 4; i++) {
             setTimeout(() => {
                 personimg.value.style.translate = (toNumPx(personimg.value.style.translate) - 49) % 784 + "px";
             }, current_game.delay);
@@ -431,22 +429,12 @@ function forward() {
         current_game.player.position = { x: new_position.x, y: new_position.y, };
         move(xx, yy);
     }
-    // console.log(current_game.player.to_string());
 }
 
 function turn_left() {
     eval(javascriptGenerator.INFINITE_LOOP_TRAP);
     var new_direction = (current_game.player.direction - 1) % player_direction_max;
-
-    // setTimeout(function() {
-    // 	mazeman.value.style.animation = "turn_left_" + current_game.player.direction + " 1s steps(4) forwards";
-    // 	console.log("turn_left_" + current_game.player.direction + " 1s steps(4) forwards");
-    // 	mazeman.value.style.animation = "";
-    // }, current_game.delay);
-    // current_game.delay += 1000;
-
     change_dir(1);
-
     current_game.player.direction = new_direction;
     console.log(current_game.player.to_string());
 }
@@ -454,13 +442,6 @@ function turn_left() {
 function turn_right() {
     eval(javascriptGenerator.INFINITE_LOOP_TRAP);
     var new_direction = ((current_game.player.direction + 1) % player_direction_max + player_direction_max) % player_direction_max;
-
-    // setTimeout(function() {
-    // 	mazeman.value.style.animation = "turn_right_" + current_game.player.direction + " 1s steps(4) forwards";
-    // 	mazeman.value.style.animation = "";
-    // }, current_game.delay);
-    // current_game.delay += 1000;
-
     change_dir(-1);
 
     current_game.player.direction = new_direction;
@@ -643,86 +624,8 @@ function runCode() {
                         width: 50px;
                         overflow: hidden;
                         position: relative;
-
-                        @keyframes turn_right_1 {
-                            from {
-                                transform: translateX(0px);
-                            }
-
-                            to {
-                                transform: translateX(-196px);
-                            }
-                        }
-
-                        @keyframes turn_right_2 {
-                            from {
-                                transform: translateX(-196px);
-                            }
-
-                            to {
-                                transform: translateX(-392px);
-                            }
-                        }
-
-                        @keyframes turn_right_3 {
-                            from {
-                                transform: translateX(-392px);
-                            }
-
-                            to {
-                                transform: translateX(-588px);
-                            }
-                        }
-
-                        @keyframes turn_right_0 {
-                            0% {
-                                transform: translateX(-588px);
-                            }
-
-                            100% {
-                                transform: translateX(-735px);
-                            }
-                        }
-
-                        @keyframes turn_left_0 {
-                            from {
-                                transform: translateX(-196px);
-                            }
-
-                            to {
-                                transform: translateX(0px);
-                            }
-                        }
-
-                        @keyframes turn_left_1 {
-                            from {
-                                transform: translateX(-392px);
-                            }
-
-                            to {
-                                transform: translateX(-196px);
-                            }
-                        }
-
-                        @keyframes turn_left_2 {
-                            from {
-                                transform: translateX(-588px);
-                            }
-
-                            to {
-                                transform: translateX(-392px);
-                            }
-                        }
-
-                        @keyframes turn_left_3 {
-                            from {
-                                transform: translateX(-735px);
-                            }
-
-                            to {
-                                transform: translateX(-588px);
-                            }
-                        }
+                        transform: translateY(-20%);
+                        z-index: 10;
 
                         img {
                             height: 50px;
@@ -738,8 +641,8 @@ function runCode() {
                     position: absolute;
                     left: @markerLeft;
                     top: @markerTop;
-                    transform: translate(-50%, -50%);
-                    z-index: 999;
+                    transform: translate(-50%, -100%);
+                    z-index: 5;
                     border-radius: 50%;
                 }
             }
