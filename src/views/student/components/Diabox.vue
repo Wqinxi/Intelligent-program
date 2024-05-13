@@ -39,32 +39,31 @@ mitter.on('sendStart', (res: any) => {
   console.log('sendStart', res)
 
   startpoint = res;
-  console.log("[][]",startpoint)
 })
 function sendMessage() {
   let data = {
-      name: "user",
-      block: "'向前走':'forward()','向左转':'turn left()','向右转':'turn right()','循环':'while_do(){}','没到达终点':'not_end()','如果,否则':'if_else'",
-      map: `[[x,y],${mapMsg}]`,
-      code: codMsg,
-      startpoint: startpoint,
-      endpoint: endpoint,
-      query: message.value,
-    }
-    let config = {
-      method: 'post',
-      url: 'http://121.37.47.29:8080/user/chat',
-      data: data,
-      headers: {
-        'token': localStorage.getItem('token')
-      },
-    };
-    console.log("发送的数据", config)
+    name: "user",
+    block: "'向前走':'forward()','向左转':'turn left()','向右转':'turn right()','循环':'while_do(){}','没到达终点':'not_end()','如果,否则':'if_else'",
+    map: `[[x,y],${mapMsg}]`,
+    code: codMsg,
+    startpoint: startpoint,
+    endpoint: endpoint,
+    query: message.value,
+  }
+  let config = {
+    method: 'post',
+    url: 'http://121.37.47.29:8080/user/chat',
+    data: data,
+    headers: {
+      'token': localStorage.getItem('token')
+    },
+  };
+  console.log("发送的数据", config)
   if (message.value.trim() !== '') {
     messages.push({ sender: 'me', content: message.value, userName: "我" });
     console.log(messages)
     // 上传评论
-    
+
     axios(config)
       .then(function (res) {
         // console.log(JSON.stringify(res.data));
