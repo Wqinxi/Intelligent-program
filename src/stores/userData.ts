@@ -16,24 +16,24 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
                     videoList: [
                         {
-                            videoTitle: '课程A的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
@@ -141,26 +141,26 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                 progress: "80%",//进度
                 videoPage: {// 视频列表
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
-                    videoList: [
+                    videoList: videoList: [
                         {
-                            videoTitle: '课程B的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程B的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程B的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
-                            videoTitle: '课程B的视频4',
+                            videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
@@ -268,26 +268,26 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                 progress: "0%",//进度
                 videoPage: {// 视频列表
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
-                    videoList: [
+                    videoList: videoList: [
                         {
-                            videoTitle: '课程A的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
@@ -395,26 +395,26 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                 progress: "100%",//进度
                 videoPage: {// 视频列表
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
-                    videoList: [
+                    videoList: videoList: [
                         {
-                            videoTitle: '课程A的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
@@ -525,24 +525,24 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
                     videoList: [
                         {
-                            videoTitle: '课程A的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
@@ -653,24 +653,24 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
                     videoList: [
                         {
-                            videoTitle: '课程A的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
@@ -780,24 +780,24 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
                     videoList: [
                         {
-                            videoTitle: '课程A的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
@@ -908,24 +908,24 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
                     videoList: [
                         {
-                            videoTitle: '课程A的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
@@ -1036,24 +1036,24 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
                     videoList: [
                         {
-                            videoTitle: '课程A的视频1',//视频的title
+                            videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/1.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频2',
+                            videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '1111hsttps://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/2.mp4',
                         },
                         {
-                            videoTitle: '课程A的视频3',
+                            videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+                            videoSrc: '../video/4.mp4',
                         },
                     ]
                 },
