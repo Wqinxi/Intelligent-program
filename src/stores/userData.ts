@@ -141,7 +141,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                 progress: "80%",//进度
                 videoPage: {// 视频列表
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
-                    videoList: videoList: [
+                    videoList: [
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
@@ -395,7 +395,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                 progress: "100%",//进度
                 videoPage: {// 视频列表
                     courseImg: 'https://gitcode.net/T_J_J_/picture/-/raw/master/03.jpg',// 关于视频的图片
-                    videoList: videoList: [
+                    videoList: [
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
