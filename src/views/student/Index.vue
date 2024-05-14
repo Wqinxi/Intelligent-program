@@ -11,9 +11,9 @@ const route = useRoute()
   </div>
   <div>
     <RouterView v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
+      <!-- <keep-alive> -->
+      <component :is="Component" />
+      <!-- </keep-alive> -->
     </RouterView>
   </div>
 </template>

@@ -56,7 +56,7 @@ let videoSrc = ref(Data.videoPage.videoList[currentLesson.value - 1].videoSrc)
 let video = ref()
 mitter.on('send-data', (val: any) => {
     Data = val
-    let videoSrc = ref(Data.videoPage.videoList[currentLesson.value - 1].videoSrc)
+    videoSrc = ref(Data.videoPage.videoList[currentLesson.value - 1].videoSrc)
 })
 onMounted(() => {
     function videoSaveThroto(timeGap: number) {
@@ -76,10 +76,9 @@ onMounted(() => {
     let videoSave = videoSaveThroto(30000)
     video.value.ontimeupdate = videoSave
     video.value.onloadeddata = function () {
-        let CurrentVideoTime = localStorage.getItem(`CurrentVideoTime[${currentTasklocal}][${currentLesson.value}]`) || Data.videoPage.videoList[currentLesson.value].CurrentVideoTime;// 本地有就用，没有就用默认数据/用户数据
+        let CurrentVideoTime = localStorage.getItem(`CurrentVideoTime[${currentTasklocal}][${currentLesson.value}]`) || Data.videoPage.videoList[currentLesson.value].CurrentVideoTime || 0;// 本地有就用，没有就用默认数据/用户数据
         video.value.currentTime = CurrentVideoTime
     }
-
 })
 
 
@@ -90,6 +89,7 @@ function changeVideo(src: string, idx: number) {
 
 // 未定式
 function goCoding() {
+    mitter.emit('send-levels', Data.blockList)
     router.push('/student/task')
 }
 

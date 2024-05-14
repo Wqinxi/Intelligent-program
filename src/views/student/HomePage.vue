@@ -20,6 +20,7 @@ function toTheclass(task: number) {
     router.push({
         path: '/student/video',
     })
+    localStorage.setItem('isrefresh', '0')
 }
 </script>
 
@@ -40,7 +41,7 @@ function toTheclass(task: number) {
 </template>
 <style scoped lang="less">
 .body-wrap {
-    background-color:rgb(241, 244, 239) ;
+    background-color: rgb(241, 244, 239);
     position: relative;
     height: 100vh;
 
@@ -51,8 +52,8 @@ function toTheclass(task: number) {
         width: 100%;
 
         .content {
-            margin-top:-16%;
-            margin-left:10%;
+            margin-top: -16%;
+            margin-left: 10%;
             position: relative;
             width: 80%;
             top: 322px;

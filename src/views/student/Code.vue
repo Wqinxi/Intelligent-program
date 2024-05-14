@@ -62,7 +62,7 @@ import * as hans from 'blockly/msg/zh-hans'
 import { useRouter } from 'vue-router'
 import useGame from "@/views/student/blockData/game.js"
 import usePlayer from "@/views/student/blockData/player.js"
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 import { javascriptGenerator } from 'blockly/javascript';
 import { useCurrentTaskStore } from "@/stores/activeTask";
 import { useUserDataStore } from "@/stores/userData";
@@ -73,6 +73,12 @@ let userDataStore = storeToRefs(useUserDataStore())
 let currentTasklocal = Number(localStorage.getItem('currentTask')) || useCurrentTaskStore().currentTask
 let Data = userDataStore.userData.value.Data[currentTasklocal]
 let levels = Data.blockList
+mitter.on('send-levels', (val: any) => {
+    levels = val
+    // load_level(levels[currentTask.value], currentTask.value);
+    console.log("进入编程页面", levels)
+})
+
 let { game } = useGame()
 
 let {
@@ -86,15 +92,17 @@ let {
 
 let currentTask = ref(0);
 
-mitter.on('send-data', (val: any) => {
-    Data = val
-    levels = Data.blockList
-})
 
-
+const router = useRouter()
 const route = useRoute()
 ////////////////////////////////////////// code区
 onMounted(() => {
+    // if (localStorage.getItem('isrefresh') == '1') {
+
+    // } else {
+    //     localStorage.setItem('isrefresh', '1')
+    //     location.reload()
+    // }
     forward();
     turn_left();
     turn_right();
@@ -104,6 +112,9 @@ onMounted(() => {
     console.log("onMounted")
     load_level(levels[currentTask.value], currentTask.value);
 });
+
+
+
 
 function toChineseNum(number: any) {
     const chineseNum = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
@@ -123,7 +134,7 @@ function toChineseNum(number: any) {
     }
     return str;
 }
-const router = useRouter()
+
 /////////////////////
 
 // 向前走block定义
@@ -279,8 +290,7 @@ function load_level(level: any, currenttask: number) {
             length: 4,
             colour: '#ccc',
             snap: true
-        },
-        maxBlocks: 10
+        }
     });
 
     Blockly.getMainWorkspace().options.maxBlocks = ('max_blocks' in level) ? (level.max_blocks) : Infinity;
