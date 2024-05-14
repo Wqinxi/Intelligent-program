@@ -262,7 +262,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '循环块',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                     ]
                 },
@@ -454,7 +454,7 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '选择块',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
