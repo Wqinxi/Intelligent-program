@@ -18,22 +18,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
@@ -145,22 +145,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
@@ -272,22 +272,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
@@ -399,22 +399,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
@@ -527,22 +527,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
@@ -655,22 +655,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
@@ -782,22 +782,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
@@ -910,22 +910,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
@@ -1038,22 +1038,22 @@ export const useUserDataStore = defineStore('useUserDataStore', () => {
                         {
                             videoTitle: '视频1',//视频的title
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/1.mp4',
+                            videoSrc: '/video/1.mp4',
                         },
                         {
                             videoTitle: '视频2',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/2.mp4',
+                            videoSrc: '/video/2.mp4',
                         },
                         {
                             videoTitle: '视频3',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/3.mp4',
+                            videoSrc: '/video/3.mp4',
                         },
                         {
                             videoTitle: '课程A的视频4',
                             CurrentVideoTime: 0,
-                            videoSrc: '../video/4.mp4',
+                            videoSrc: '/video/4.mp4',
                         },
                     ]
                 },
